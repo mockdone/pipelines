@@ -24,8 +24,8 @@ RUN mkdir -p ./server/dist && \
 # Generate the dependency licenses files (one for the UI and one for the webserver),
 # concatenate them to one file under ./src/server
 RUN npm i -D license-checker
-RUN node gen_licenses . && node gen_licenses server && \
-    cat dependency-licenses.txt >> server/dependency-licenses.txt
+#RUN node gen_licenses . && node gen_licenses server && \
+#    cat dependency-licenses.txt >> server/dependency-licenses.txt
 
 FROM node:12.14.1-alpine
 
