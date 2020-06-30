@@ -51,7 +51,7 @@
     "start:proxy": "./scripts/start-proxy.sh",
     "start:proxy-and-server": "./scripts/start-proxy-and-server.sh",
     "start:proxy-and-server-inspect": "./scripts/start-proxy-and-server.sh --inspect",
-    "start": "EXTEND_ESLINT=true react-scripts start",
+    "start": " react-scripts start",
     "sync-backend-sample-config": "node scripts/sync-backend-sample-config.js",
     "test": "react-scripts test",
     "test:server:coverage": "cd ./server && npm test -- --coverage && cd ..",
