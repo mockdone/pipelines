@@ -31,7 +31,7 @@
     "analyze_bundle.js",
     "build",
     "coverage",
-    "gen_licenses.js",
+//    "gen_licenses.js",
     "jest",
     "mock-backend",
     "node_modules",
