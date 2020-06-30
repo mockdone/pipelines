@@ -76,7 +76,7 @@ class PipelineList extends Page<{}, PipelineListState> {
     const buttons = new Buttons(this.props, this.refresh.bind(this));
     return {
       actions: buttons
-        .newPipelineVersion('Upload pipeline')
+        .newPipelineVersion('上传 pipeline')
         .refresh(this.refresh.bind(this))
         .deletePipelinesAndPipelineVersions(
           () => this.state.selectedIds,
@@ -86,7 +86,7 @@ class PipelineList extends Page<{}, PipelineListState> {
         )
         .getToolbarActionMap(),
       breadcrumbs: [],
-      pageTitle: 'Pipelines',
+      pageTitle: 'Pipelines 工作流',
     };
   }
 
@@ -95,11 +95,11 @@ class PipelineList extends Page<{}, PipelineListState> {
       {
         customRenderer: this._nameCustomRenderer,
         flex: 1,
-        label: 'Pipeline name',
+        label: 'Pipeline 工作流名称 ',
         sortKey: PipelineSortKeys.NAME,
       },
-      { label: 'Description', flex: 3, customRenderer: descriptionCustomRenderer },
-      { label: 'Uploaded on', sortKey: PipelineSortKeys.CREATED_AT, flex: 1 },
+      { label: '描述', flex: 3, customRenderer: descriptionCustomRenderer },
+      { label: '上传时间', sortKey: PipelineSortKeys.CREATED_AT, flex: 1 },
     ];
 
     const rows: Row[] = this.state.displayPipelines.map(p => {
@@ -122,8 +122,8 @@ class PipelineList extends Page<{}, PipelineListState> {
           reload={this._reload.bind(this)}
           toggleExpansion={this._toggleRowExpand.bind(this)}
           getExpandComponent={this._getExpandedPipelineComponent.bind(this)}
-          filterLabel='Filter pipelines'
-          emptyMessage='No pipelines found. Click "Upload pipeline" to start.'
+          filterLabel='过滤 pipelines'
+          emptyMessage='无数据'
         />
 
         <UploadPipelineDialog
@@ -181,7 +181,7 @@ class PipelineList extends Page<{}, PipelineListState> {
       displayPipelines.forEach(exp => (exp.expandState = ExpandState.COLLAPSED));
       this.clearBanner();
     } catch (err) {
-      await this.showPageError('Error: failed to retrieve list of pipelines.', err);
+      await this.showPageError('操作失败: 连接pipeline失败.', err);
     }
 
     this.setStateSafe({ displayPipelines: (response && response.pipelines) || [] });
@@ -254,7 +254,7 @@ class PipelineList extends Page<{}, PipelineListState> {
       return true;
     } catch (err) {
       const errorMessage = await errorToMessage(err);
-      this.showErrorDialog('Failed to upload pipeline', errorMessage);
+      this.showErrorDialog('上传pipeline失败', errorMessage);
       return false;
     }
   }

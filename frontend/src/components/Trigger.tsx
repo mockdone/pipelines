@@ -151,7 +151,7 @@ export default class Trigger extends React.Component<TriggerProps, TriggerState>
       <div>
         <Input
           select={true}
-          label='Trigger type'
+          label='触发器类型'
           required={true}
           onChange={this.handleChange('type')}
           value={type}
@@ -166,7 +166,7 @@ export default class Trigger extends React.Component<TriggerProps, TriggerState>
 
         <div>
           <Input
-            label='Maximum concurrent runs'
+            label='最大并发 runs'
             required={true}
             onChange={this.handleChange('maxConcurrentRuns')}
             value={maxConcurrentRuns}
@@ -182,10 +182,10 @@ export default class Trigger extends React.Component<TriggerProps, TriggerState>
                   onClick={this.handleChange('hasStartDate')}
                 />
               }
-              label='Has start date'
+              label='设置开始时间'
             />
             <Input
-              label='Start date'
+              label='开始日期'
               type='date'
               onChange={this.handleChange('startDate')}
               value={startDate}
@@ -196,7 +196,7 @@ export default class Trigger extends React.Component<TriggerProps, TriggerState>
             />
             <Separator />
             <Input
-              label='Start time'
+              label='开始时间'
               type='time'
               onChange={this.handleChange('startTime')}
               value={startTime}
@@ -216,10 +216,10 @@ export default class Trigger extends React.Component<TriggerProps, TriggerState>
                   onClick={this.handleChange('hasEndDate')}
                 />
               }
-              label='Has end date'
+              label='设置结束时间'
             />
             <Input
-              label='End date'
+              label='结束日期'
               type='date'
               onChange={this.handleChange('endDate')}
               value={endDate}
@@ -230,7 +230,7 @@ export default class Trigger extends React.Component<TriggerProps, TriggerState>
             />
             <Separator />
             <Input
-              label='End time'
+              label='结束时间'
               type='time'
               onChange={this.handleChange('endTime')}
               value={endTime}
@@ -273,7 +273,7 @@ export default class Trigger extends React.Component<TriggerProps, TriggerState>
           </span>
 
           <span className={commonCss.flex}>
-            Run every
+            每
             {type === TriggerType.INTERVALED && (
               <div className={commonCss.flex}>
                 <Separator />
@@ -312,7 +312,7 @@ export default class Trigger extends React.Component<TriggerProps, TriggerState>
           <div>
             {intervalCategory === PeriodicInterval.WEEK && (
               <div>
-                <span>On:</span>
+                <span>每:</span>
                 <FormControlLabel
                   control={
                     <Checkbox
@@ -321,10 +321,10 @@ export default class Trigger extends React.Component<TriggerProps, TriggerState>
                       onClick={this._toggleCheckAllDays.bind(this)}
                     />
                   }
-                  label='All'
+                  label='全选'
                 />
                 <Separator />
-                {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, i) => (
+                {['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'].map((day, i) => (
                   <Button
                     variant='fab'
                     mini={true}
@@ -349,18 +349,14 @@ export default class Trigger extends React.Component<TriggerProps, TriggerState>
                 }
                 label={
                   <span>
-                    Allow editing cron expression. ( format is specified{' '}
-                    <a href='https://godoc.org/github.com/robfig/cron#hdr-CRON_Expression_Format'>
-                      here
-                    </a>
-                    )
+                   使用CRON表达式
                   </span>
                 }
               />
             </div>
 
             <Input
-              label='cron expression'
+              label='cron 表达式'
               onChange={this.handleChange('cron')}
               value={cron}
               width={300}
@@ -368,7 +364,7 @@ export default class Trigger extends React.Component<TriggerProps, TriggerState>
               variant='outlined'
             />
 
-            <div>Note: Start and end dates/times are handled outside of cron.</div>
+            <div>提示: 开始和结束日期/时间在cron之外处理。</div>
           </div>
         )}
       </div>

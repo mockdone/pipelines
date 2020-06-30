@@ -60,7 +60,7 @@ class NewRunParameters extends React.Component<NewRunParametersProps> {
 
     return (
       <div>
-        <div className={commonCss.header}>Run parameters</div>
+        <div className={commonCss.header}>Run 参数</div>
         <div>{titleMessage}</div>
         {!!initialParams.length && (
           <div>

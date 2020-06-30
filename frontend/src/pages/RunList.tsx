@@ -101,21 +101,21 @@ class RunList extends React.PureComponent<RunListProps, RunListState> {
       {
         customRenderer: this._nameCustomRenderer,
         flex: 1.5,
-        label: 'Run name',
+        label: '运行名称',
         sortKey: RunSortKeys.NAME,
       },
-      { customRenderer: this._statusCustomRenderer, flex: 0.5, label: 'Status' },
-      { label: 'Duration', flex: 0.5 },
-      { customRenderer: this._pipelineVersionCustomRenderer, label: 'Pipeline Version', flex: 1 },
-      { customRenderer: this._recurringRunCustomRenderer, label: 'Recurring Run', flex: 0.5 },
-      { label: 'Start time', flex: 1, sortKey: RunSortKeys.CREATED_AT },
+      { customRenderer: this._statusCustomRenderer, flex: 0.5, label: '状态' },
+      { label: '时长', flex: 0.5 },
+      { customRenderer: this._pipelineVersionCustomRenderer, label: 'Pipeline 版本', flex: 1 },
+      { customRenderer: this._recurringRunCustomRenderer, label: '循环 Run', flex: 0.5 },
+      { label: '开始时间', flex: 1, sortKey: RunSortKeys.CREATED_AT },
     ];
 
     if (!this.props.hideExperimentColumn) {
       columns.splice(3, 0, {
         customRenderer: this._experimentCustomRenderer,
         flex: 1,
-        label: 'Experiment',
+        label: '实验',
       });
     }
 
@@ -180,7 +180,7 @@ class RunList extends React.PureComponent<RunListProps, RunListState> {
           selectedIds={this.props.selectedIds}
           initialSortColumn={RunSortKeys.CREATED_AT}
           ref={this._tableRef}
-          filterLabel='Filter runs'
+          filterLabel='过滤 runs'
           updateSelection={this.props.onSelectionChange}
           reload={this._loadRuns.bind(this)}
           disablePaging={this.props.disablePaging}

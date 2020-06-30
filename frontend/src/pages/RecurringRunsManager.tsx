@@ -61,10 +61,10 @@ class RecurringRunsManager extends React.Component<RecurringRunListProps, Recurr
       {
         customRenderer: this._nameCustomRenderer,
         flex: 2,
-        label: 'Run name',
+        label: 'Run 名称',
         sortKey: JobSortKeys.NAME,
       },
-      { label: 'Created at', flex: 2, sortKey: JobSortKeys.CREATED_AT },
+      { label: '创建时间', flex: 2, sortKey: JobSortKeys.CREATED_AT },
       { customRenderer: this._enabledCustomRenderer, label: '', flex: 1 },
     ];
 
@@ -87,9 +87,9 @@ class RecurringRunsManager extends React.Component<RecurringRunListProps, Recurr
           updateSelection={ids => this.setState({ selectedIds: ids })}
           initialSortColumn={JobSortKeys.CREATED_AT}
           reload={this._loadRuns.bind(this)}
-          filterLabel='Filter recurring runs'
+          filterLabel='过滤循环 runs'
           disableSelection={true}
-          emptyMessage={'No recurring runs found in this experiment.'}
+          emptyMessage={'无数据.'}
         />
       </React.Fragment>
     );

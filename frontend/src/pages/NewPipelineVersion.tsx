@@ -149,8 +149,8 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
   public getInitialToolbarState(): ToolbarProps {
     return {
       actions: {},
-      breadcrumbs: [{ displayName: 'Pipeline Versions', href: RoutePage.NEW_PIPELINE_VERSION }],
-      pageTitle: 'Upload Pipeline or Pipeline Version',
+      breadcrumbs: [{ displayName: 'Pipeline 版本', href: RoutePage.NEW_PIPELINE_VERSION }],
+      pageTitle: '上传 Pipeline 或者 Pipeline Version',
     };
   }
 
@@ -180,7 +180,7 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
           <div className={classes(commonCss.flex, padding(10, 'b'))}>
             <FormControlLabel
               id='createNewPipelineBtn'
-              label='Create a new pipeline'
+              label='新建pipeline'
               checked={newPipeline === true}
               control={<Radio color='primary' />}
               onChange={() =>
@@ -195,7 +195,7 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
             />
             <FormControlLabel
               id='createPipelineVersionUnderExistingPipelineBtn'
-              label='Create a new pipeline version under an existing pipeline'
+              label='根据已有的pipeline创建新的pipeline版本'
               checked={newPipeline === false}
               control={<Radio color='primary' />}
               onChange={() =>
@@ -213,12 +213,12 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
           {/* Pipeline name and help text for uploading new pipeline */}
           {newPipeline === true && (
             <>
-              <div className={css.explanation}>Upload pipeline with the specified package.</div>
+              <div className={css.explanation}>从指定文件上传pipeline工作流</div>
               <Input
                 id='newPipelineName'
                 value={pipelineName}
                 required={true}
-                label='Pipeline Name'
+                label='Pipeline 名称'
                 variant='outlined'
                 inputRef={this._pipelineNameRef}
                 onChange={this.handleChange('pipelineName')}
@@ -229,7 +229,7 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
                 id='pipelineDescription'
                 value={pipelineDescription}
                 required={true}
-                label='Pipeline Description'
+                label='Pipeline 描述'
                 variant='outlined'
                 inputRef={this._pipelineDescriptionRef}
                 onChange={this.handleChange('pipelineDescription')}
@@ -244,7 +244,7 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
           {newPipeline === false && (
             <>
               <div className={css.explanation}>
-                Upload pipeline version with the specified package.
+               创建指定的pipeline版本
               </div>
               {/* Select pipeline */}
               <Input
@@ -282,8 +282,8 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
                 <DialogContent>
                   <ResourceSelector
                     {...this.props}
-                    title='Choose a pipeline'
-                    filterLabel='Filter pipelines'
+                    title='选择 pipeline'
+                    filterLabel='过滤 pipelines'
                     listApi={async (...args) => {
                       const response = await Apis.pipelineServiceApi.listPipelines(...args);
                       return {
@@ -292,7 +292,7 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
                       };
                     }}
                     columns={this.pipelineSelectorColumns}
-                    emptyMessage='No pipelines found. Upload a pipeline and then try again.'
+                    emptyMessage='无数据. 上传pipeline重试.'
                     initialSortColumn={PipelineSortKeys.CREATED_AT}
                     selectionChanged={(selectedPipeline: ApiPipeline) =>
                       this.setStateSafe({ unconfirmedSelectedPipeline: selectedPipeline })
@@ -308,7 +308,7 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
                     onClick={() => this._pipelineSelectorClosed(false)}
                     color='secondary'
                   >
-                    Cancel
+                    取消
                   </Button>
                   <Button
                     id='usePipelineBtn'
@@ -316,7 +316,7 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
                     color='secondary'
                     disabled={!unconfirmedSelectedPipeline}
                   >
-                    Use this pipeline
+                    使用该pipeline
                   </Button>
                 </DialogActions>
               </Dialog>
@@ -324,7 +324,7 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
               {/* Set pipeline version name */}
               <Input
                 id='pipelineVersionName'
-                label='Pipeline Version name'
+                label='Pipeline 版本名称'
                 inputRef={this._pipelineVersionNameRef}
                 required={true}
                 onChange={this.handleChange('pipelineVersionName')}
@@ -339,17 +339,16 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
           {this.state.importMethod === ImportMethod.LOCAL && (
             <>
               <div className={padding(10, 'b')}>
-                Choose a pipeline package file from your computer, and give the pipeline a unique
-                name.
+                从本地上传pipeline文件
                 <br />
-                You can also drag and drop the file here.
+                拖拽文件到此处
               </div>
               <DocumentationCompilePipeline />
             </>
           )}
           {this.state.importMethod === ImportMethod.URL && (
             <>
-              <div className={padding(10, 'b')}>URL must be publicly accessible.</div>
+              <div className={padding(10, 'b')}>URL 必须为公开且能被访问到的地址.</div>
               <DocumentationCompilePipeline />
             </>
           )}
@@ -358,7 +357,7 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
           <div className={classes(commonCss.flex, padding(10, 'b'))}>
             <FormControlLabel
               id='localPackageBtn'
-              label='Upload a file'
+              label='上传文件'
               checked={importMethod === ImportMethod.LOCAL}
               control={<Radio color='primary' />}
               onChange={() => this.setState({ importMethod: ImportMethod.LOCAL })}
@@ -392,7 +391,7 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
                         style={{ padding: '3px 5px', margin: 0, whiteSpace: 'nowrap' }}
                         disabled={importMethod === ImportMethod.URL}
                       >
-                        Choose file
+                        选择文件
                       </Button>
                     </InputAdornment>
                   ),
@@ -408,14 +407,14 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
           <div className={classes(commonCss.flex, padding(10, 'b'))}>
             <FormControlLabel
               id='remotePackageBtn'
-              label='Import by url'
+              label='通过URL引用'
               checked={importMethod === ImportMethod.URL}
               control={<Radio color='primary' />}
               onChange={() => this.setState({ importMethod: ImportMethod.URL })}
             />
             <Input
               id='pipelinePackageUrl'
-              label='Package Url'
+              label='文件包 Url'
               multiline={true}
               onChange={this.handleChange('packageUrl')}
               value={packageUrl}
@@ -432,7 +431,7 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
           {/* Fill pipeline version code source url */}
           <Input
             id='pipelineVersionCodeSource'
-            label='Code Source (optional)'
+            label='源码 (optional)'
             multiline={true}
             onChange={this.handleChange('codeSourceUrl')}
             value={codeSourceUrl}
@@ -446,14 +445,14 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
               disabled={!!validationError}
               busy={isbeingCreated}
               className={commonCss.buttonAction}
-              title={'Create'}
+              title={'创建'}
               onClick={this._create.bind(this)}
             />
             <Button
               id='cancelNewPipelineOrVersionBtn'
               onClick={() => this.props.history.push(RoutePage.PIPELINES)}
             >
-              Cancel
+              取消
             </Button>
             <div className={css.errorMessage}>{validationError}</div>
           </div>
@@ -621,17 +620,17 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
     try {
       if (newPipeline) {
         if (!packageUrl && !fileName) {
-          throw new Error('Must specify either package url  or file in .yaml, .zip, or .tar.gz');
+          throw new Error('必须指定文件包 url  或者选择  .yaml, .zip,  .tar.gz 格式的文件');
         }
       } else {
         if (!pipeline) {
-          throw new Error('Pipeline is required');
+          throw new Error('Pipeline 不能为空');
         }
         if (!pipelineVersionName) {
-          throw new Error('Pipeline version name is required');
+          throw new Error('Pipeline 版本名称不能为空');
         }
         if (!packageUrl && !fileName) {
-          throw new Error('Please specify either package url or file in .yaml, .zip, or .tar.gz');
+          throw new Error('必须指定文件包 url  或者选择  .yaml, .zip,  .tar.gz 格式的文件');
         }
       }
       this.setState({ validationError: '' });
@@ -667,7 +666,7 @@ export default NewPipelineVersion;
 
 const DocumentationCompilePipeline: React.FC = () => (
   <div className={padding(10, 'b')}>
-    For expected file format, refer to{' '}
+    了解更多, 可点击查看{' '}
     <ExternalLink href='https://www.kubeflow.org/docs/pipelines/sdk/build-component/#compile-the-pipeline'>
       Compile Pipeline Documentation
     </ExternalLink>

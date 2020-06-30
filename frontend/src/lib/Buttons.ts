@@ -77,8 +77,8 @@ export default class Buttons {
       disabled: !useCurrentResource,
       disabledTitle: useCurrentResource ? undefined : 'Select at least one resource to archive',
       id: 'archiveBtn',
-      title: 'Archive',
-      tooltip: 'Archive',
+      title: '存档',
+      tooltip: '存档',
     };
     return this;
   }
@@ -90,8 +90,8 @@ export default class Buttons {
       disabledTitle: useCurrentResource ? undefined : 'Select a run to clone',
       id: 'cloneBtn',
       style: { minWidth: 100 },
-      title: 'Clone run',
-      tooltip: 'Create a copy from this runs initial state',
+      title: '复制RUN',
+      tooltip: '复制RUN',
     };
     return this;
   }
@@ -102,8 +102,8 @@ export default class Buttons {
       disabled: !useCurrentResource,
       disabledTitle: useCurrentResource ? undefined : 'Select a recurring run to clone',
       id: 'cloneBtn',
-      title: 'Clone recurring run',
-      tooltip: 'Create a copy from this runs initial state',
+      title: '复制 recurring run',
+      tooltip: '复制 recurring run',
     };
     return this;
   }
@@ -118,8 +118,8 @@ export default class Buttons {
       disabled: !useCurrentResource,
       disabledTitle: useCurrentResource ? undefined : 'Select at least one resource to retry',
       id: 'retryBtn',
-      title: 'Retry',
-      tooltip: 'Retry',
+      title: '重试',
+      tooltip: '重试',
     };
     return this;
   }
@@ -129,8 +129,8 @@ export default class Buttons {
       action,
       icon: CollapseIcon,
       id: 'collapseBtn',
-      title: 'Collapse all',
-      tooltip: 'Collapse all sections',
+      title: '收起',
+      tooltip: '收起所有章节',
     };
     return this;
   }
@@ -142,7 +142,7 @@ export default class Buttons {
       disabledTitle: 'Select multiple runs to compare',
       id: 'compareBtn',
       style: { minWidth: 125 },
-      title: 'Compare runs',
+      title: '对比 runs',
       tooltip: 'Compare up to 10 selected runs',
     };
     return this;
@@ -170,8 +170,8 @@ export default class Buttons {
         ? undefined
         : `Select at least one ${resourceName} to delete`,
       id: 'deleteBtn',
-      title: 'Delete',
-      tooltip: 'Delete',
+      title: '删除',
+      tooltip: '删除',
     };
     return this;
   }
@@ -196,8 +196,8 @@ export default class Buttons {
         ? undefined
         : `Select at least one pipeline and/or one pipeline version to delete`,
       id: 'deletePipelinesAndPipelineVersionsBtn',
-      title: 'Delete',
-      tooltip: 'Delete',
+      title: '删除',
+      tooltip: '删除',
     };
     return this;
   }
@@ -208,7 +208,7 @@ export default class Buttons {
       disabled: true,
       disabledTitle: 'Run schedule already disabled',
       id: 'disableBtn',
-      title: 'Disable',
+      title: '禁用',
       tooltip: "Disable the run's trigger",
     };
     return this;
@@ -220,7 +220,7 @@ export default class Buttons {
       disabled: true,
       disabledTitle: 'Run schedule already enabled',
       id: 'enableBtn',
-      title: 'Enable',
+      title: '启用',
       tooltip: "Enable the run's trigger",
     };
     return this;
@@ -231,7 +231,7 @@ export default class Buttons {
       action,
       icon: ExpandIcon,
       id: 'expandBtn',
-      title: 'Expand all',
+      title: '展开',
       tooltip: 'Expand all sections',
     };
     return this;
@@ -244,7 +244,7 @@ export default class Buttons {
       id: 'newExperimentBtn',
       outlined: true,
       style: { minWidth: 185 },
-      title: 'Create experiment',
+      title: '新建实验',
       tooltip: 'Create a new experiment',
     };
     return this;
@@ -258,8 +258,8 @@ export default class Buttons {
       outlined: true,
       primary: true,
       style: { minWidth: 130 },
-      title: 'Create run',
-      tooltip: 'Create a new run',
+      title: '新建运行',
+      tooltip: '新建运行',
     };
     return this;
   }
@@ -275,8 +275,8 @@ export default class Buttons {
       outlined: true,
       primary: true,
       style: { minWidth: 130 },
-      title: 'Create run',
-      tooltip: 'Create a new run',
+      title: '新建运行',
+      tooltip: '新建运行',
     };
     return this;
   }
@@ -288,8 +288,8 @@ export default class Buttons {
       id: 'createNewRecurringRunBtn',
       outlined: true,
       style: { minWidth: 195 },
-      title: 'Create recurring run',
-      tooltip: 'Create a new recurring run',
+      title: '新建循环运行',
+      tooltip: '新建循环运行',
     };
     return this;
   }
@@ -311,8 +311,8 @@ export default class Buttons {
     this._map[ButtonKeys.REFRESH] = {
       action,
       id: 'refreshBtn',
-      title: 'Refresh',
-      tooltip: 'Refresh the list',
+      title: '刷新',
+      tooltip: '刷新列表',
     };
     return this;
   }
@@ -331,8 +331,8 @@ export default class Buttons {
       disabled: !useCurrentResource,
       disabledTitle: useCurrentResource ? undefined : 'Select at least one resource to restore',
       id: 'restoreBtn',
-      title: 'Restore',
-      tooltip: 'Restore',
+      title: '还原',
+      tooltip: '还原',
     };
     return this;
   }
@@ -347,8 +347,8 @@ export default class Buttons {
       disabled: !useCurrentResource,
       disabledTitle: useCurrentResource ? undefined : 'Select at least one run to terminate',
       id: 'terminateRunBtn',
-      title: 'Terminate',
-      tooltip: 'Terminate execution of a run',
+      title: '终止',
+      tooltip: '终止执行中的RUN',
     };
     return this;
   }
@@ -360,8 +360,8 @@ export default class Buttons {
       id: 'uploadBtn',
       outlined: true,
       style: { minWidth: 160 },
-      title: 'Upload pipeline',
-      tooltip: 'Upload pipeline',
+      title: '上传 pipeline工作流',
+      tooltip: '上传 pipeline工作流',
     };
     return this;
   }
@@ -390,7 +390,7 @@ export default class Buttons {
   ): void {
     this._dialogActionHandler(
       selectedIds,
-      'Retry this run?',
+      '重试运行?',
       useCurrent,
       id => Apis.runServiceApi.retryRun(id),
       callback,
@@ -571,7 +571,7 @@ export default class Buttons {
       buttons: [
         {
           onClick: async () => await dialogClosedHandler(false),
-          text: 'Cancel',
+          text: '取消',
         },
         {
           onClick: async () => await dialogClosedHandler(true),
@@ -742,7 +742,7 @@ export default class Buttons {
               selectedVersionIds,
               callback,
             ),
-          text: 'Cancel',
+          text: '取消',
         },
         {
           onClick: async () =>
@@ -752,7 +752,7 @@ export default class Buttons {
               selectedVersionIds,
               callback,
             ),
-          text: 'Delete',
+          text: '删除',
         },
       ],
       onClose: async () =>

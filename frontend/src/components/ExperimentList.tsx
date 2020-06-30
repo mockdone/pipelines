@@ -47,12 +47,12 @@ export class ExperimentList extends React.PureComponent<ExperimentListProps, Exp
       {
         customRenderer: this._nameCustomRenderer,
         flex: 1,
-        label: 'Experiment name',
+        label: '实验 名称',
         sortKey: ExperimentSortKeys.NAME,
       },
       {
         flex: 2,
-        label: 'Description',
+        label: '描述',
       },
     ];
 
@@ -76,8 +76,8 @@ export class ExperimentList extends React.PureComponent<ExperimentListProps, Exp
           reload={this._loadExperiments.bind(this)}
           toggleExpansion={this._toggleRowExpand.bind(this)}
           getExpandComponent={this._getExpandedExperimentComponent.bind(this)}
-          filterLabel='Filter experiments'
-          emptyMessage='No experiments found. Click "Create experiment" to start.'
+          filterLabel='过滤实验'
+          emptyMessage='无数据'
         />
       </div>
     );

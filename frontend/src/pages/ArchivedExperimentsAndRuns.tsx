@@ -49,7 +49,7 @@ class ArchivedExperimentsAndRuns extends Page<
     return (
       <div className={classes(commonCss.page, padding(20, 't'))}>
         <MD2Tabs
-          tabs={['Runs', 'Experiments']}
+          tabs={['运行数据', '实验']}
           selectedTab={this.props.view}
           onSwitch={this._tabSwitched.bind(this)}
         />

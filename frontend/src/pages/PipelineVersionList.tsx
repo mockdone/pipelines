@@ -86,10 +86,10 @@ class PipelineVersionList extends React.PureComponent<
       {
         customRenderer: this._nameCustomRenderer,
         flex: 2,
-        label: 'Version name',
+        label: '版本名称',
         sortKey: PipelineVersionSortKeys.NAME,
       },
-      { label: 'Uploaded on', flex: 1, sortKey: PipelineVersionSortKeys.CREATED_AT },
+      { label: '上传时间', flex: 1, sortKey: PipelineVersionSortKeys.CREATED_AT },
     ];
 
     const rows: Row[] = this.state.pipelineVersions.map(r => {
@@ -114,7 +114,7 @@ class PipelineVersionList extends React.PureComponent<
           disableSorting={this.props.disableSorting}
           disableSelection={this.props.disableSelection}
           noFilterBox={this.props.noFilterBox}
-          emptyMessage='No pipeline versions found.'
+          emptyMessage='无数据.'
         />
       </div>
     );

@@ -133,20 +133,20 @@ class Banner extends React.Component<BannerProps, BannerState> {
           {this.props.message}
         </div>
         <div className={commonCss.flex}>
-          {showTroubleshootingGuideLink && (
-            <a
-              className={css.troubleShootingLink}
-              href='https://www.kubeflow.org/docs/pipelines/troubleshooting'
-            >
-              Troubleshooting guide
-            </a>
-          )}
+          {/*{showTroubleshootingGuideLink && (*/}
+            {/*<a*/}
+              {/*className={css.troubleShootingLink}*/}
+              {/*href='https://www.kubeflow.org/docs/pipelines/troubleshooting'*/}
+            {/*>*/}
+              {/*解决办法*/}
+            {/*</a>*/}
+          {/*)}*/}
           {this.props.additionalInfo && (
             <Button
               className={classes(css.button, css.detailsButton)}
               onClick={this._showAdditionalInfo.bind(this)}
             >
-              Details
+              详情
             </Button>
           )}
           {showRefreshButton && this.props.refresh && (
@@ -154,7 +154,7 @@ class Banner extends React.Component<BannerProps, BannerState> {
               className={classes(css.button, css.refreshButton)}
               onClick={this._refresh.bind(this)}
             >
-              Refresh
+              刷新
             </Button>
           )}
         </div>
@@ -165,7 +165,7 @@ class Banner extends React.Component<BannerProps, BannerState> {
             <DialogContent className={commonCss.prewrap}>{this.props.additionalInfo}</DialogContent>
             <DialogActions>
               <Button id='dismissDialogBtn' onClick={this._dialogClosed.bind(this)}>
-                Dismiss
+                取消
               </Button>
             </DialogActions>
           </Dialog>

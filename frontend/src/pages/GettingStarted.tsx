@@ -115,7 +115,7 @@ export class GettingStarted extends Page<{}, { links: string[] }> {
     return {
       actions: buttons.getToolbarActionMap(),
       breadcrumbs: [],
-      pageTitle: 'Getting Started',
+      pageTitle: '一道云人工智能容器云平台',
     };
   }
 

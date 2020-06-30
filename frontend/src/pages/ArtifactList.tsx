@@ -79,13 +79,13 @@ class ArtifactList extends Page<{}, ArtifactListState> {
         {
           customRenderer: this.nameCustomRenderer,
           flex: 1,
-          label: 'Name',
+          label: '名称',
           sortKey: 'name',
         },
         { label: 'ID', flex: 1, sortKey: 'id' },
-        { label: 'Type', flex: 2, sortKey: 'type' },
-        { label: 'URI', flex: 2, sortKey: 'uri', customRenderer: this.uriCustomRenderer },
-        { label: 'Created at', flex: 1, sortKey: 'created_at' },
+        { label: '类型', flex: 2, sortKey: 'type' },
+        { label: '地址', flex: 2, sortKey: 'uri', customRenderer: this.uriCustomRenderer },
+        { label: '创建时间', flex: 1, sortKey: 'created_at' },
       ],
       expandedRows: new Map(),
       rows: [],
@@ -99,7 +99,7 @@ class ArtifactList extends Page<{}, ArtifactListState> {
     return {
       actions: {},
       breadcrumbs: [],
-      pageTitle: 'Artifacts',
+      pageTitle: '产品',
     };
   }
 
@@ -118,7 +118,7 @@ class ArtifactList extends Page<{}, ArtifactListState> {
           initialSortOrder='asc'
           getExpandComponent={this.getExpandedArtifactsRow}
           toggleExpansion={this.toggleRowExpand}
-          emptyMessage='No artifacts found.'
+          emptyMessage='无数据.'
         />
       </div>
     );

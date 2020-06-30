@@ -276,7 +276,7 @@ export class SideNav extends React.Component<SideNavInternalProps, SideNavState>
                 )}
               />
               <Tooltip
-                title={'Getting Started'}
+                title={'开始'}
                 enterDelay={300}
                 placement={'right-start'}
                 disableFocusListener={!collapsed}
@@ -293,7 +293,7 @@ export class SideNav extends React.Component<SideNavInternalProps, SideNavState>
                   >
                     <DescriptionIcon style={{ width: 20, height: 20 }} />
                     <span className={classes(collapsed && css.collapsedLabel, css.label)}>
-                      Getting Started
+                      开始使用
                     </span>
                   </Button>
                 </Link>
@@ -307,7 +307,7 @@ export class SideNav extends React.Component<SideNavInternalProps, SideNavState>
             )}
           />
           <Tooltip
-            title={'Pipeline List'}
+            title={'工作流'}
             enterDelay={300}
             placement={'right-start'}
             disableFocusListener={!collapsed}
@@ -328,7 +328,7 @@ export class SideNav extends React.Component<SideNavInternalProps, SideNavState>
                   }
                 />
                 <span className={classes(collapsed && css.collapsedLabel, css.label)}>
-                  Pipelines
+                  工作流
                 </span>
               </Button>
             </Link>
@@ -340,7 +340,7 @@ export class SideNav extends React.Component<SideNavInternalProps, SideNavState>
             )}
           />
           <Tooltip
-            title={'Experiment List'}
+            title={'实验'}
             enterDelay={300}
             placement={'right-start'}
             disableFocusListener={!collapsed}
@@ -361,7 +361,7 @@ export class SideNav extends React.Component<SideNavInternalProps, SideNavState>
                   }
                 />
                 <span className={classes(collapsed && css.collapsedLabel, css.label)}>
-                  Experiments
+                  实验
                 </span>
               </Button>
             </Link>
@@ -373,7 +373,7 @@ export class SideNav extends React.Component<SideNavInternalProps, SideNavState>
             )}
           />
           <Tooltip
-            title={'Artifacts List'}
+            title={'产品列表'}
             enterDelay={300}
             placement={'right-start'}
             disableFocusListener={!collapsed}
@@ -390,7 +390,7 @@ export class SideNav extends React.Component<SideNavInternalProps, SideNavState>
               >
                 <ArtifactsIcon />
                 <span className={classes(collapsed && css.collapsedLabel, css.label)}>
-                  Artifacts
+                  产品
                 </span>
               </Button>
             </Link>
@@ -402,7 +402,7 @@ export class SideNav extends React.Component<SideNavInternalProps, SideNavState>
             )}
           />
           <Tooltip
-            title={'Executions List'}
+            title={'执行列表'}
             enterDelay={300}
             placement={'right-start'}
             disableFocusListener={!collapsed}
@@ -419,14 +419,14 @@ export class SideNav extends React.Component<SideNavInternalProps, SideNavState>
               >
                 <ExecutionsIcon />
                 <span className={classes(collapsed && css.collapsedLabel, css.label)}>
-                  Executions
+                  执行列表
                 </span>
               </Button>
             </Link>
           </Tooltip>
           {this.state.jupyterHubAvailable && (
             <Tooltip
-              title={'Open Jupyter Notebook'}
+              title={'打开 Jupyter Notebook'}
               enterDelay={300}
               placement={'right-start'}
               disableFocusListener={!collapsed}
@@ -443,7 +443,7 @@ export class SideNav extends React.Component<SideNavInternalProps, SideNavState>
                 <Button className={classes(css.button, collapsed && css.collapsedButton)}>
                   <JupyterhubIcon style={{ height: 20, width: 20 }} />
                   <span className={classes(collapsed && css.collapsedLabel, css.label)}>
-                    Notebooks
+                    Notebook 服务器
                   </span>
                   <OpenInNewIcon className={css.openInNewTabIcon} />
                 </Button>
@@ -459,7 +459,7 @@ export class SideNav extends React.Component<SideNavInternalProps, SideNavState>
             )}
           />
           <Tooltip
-            title={'Archive'}
+            title={'存档'}
             enterDelay={300}
             placement={'right-start'}
             disableFocusListener={!collapsed}
@@ -476,37 +476,37 @@ export class SideNav extends React.Component<SideNavInternalProps, SideNavState>
                 )}
               >
                 <ArchiveIcon style={{ height: 20, width: 20 }} />
-                <span className={classes(collapsed && css.collapsedLabel, css.label)}>Archive</span>
+                <span className={classes(collapsed && css.collapsedLabel, css.label)}>存档</span>
               </Button>
             </Link>
           </Tooltip>
-          <hr className={classes(css.separator, collapsed && css.collapsedSeparator)} />
-          <ExternalUri
-            title={'Documentation'}
-            to={ExternalLinks.DOCUMENTATION}
-            collapsed={collapsed}
-            icon={className => <DescriptionIcon className={className} />}
-          />
-          <ExternalUri
-            title={'Github Repo'}
-            to={ExternalLinks.GITHUB}
-            collapsed={collapsed}
-            icon={className => (
-              <img src={GitHubIcon} className={classes(className, css.iconImage)} alt='Github' />
-            )}
-          />
-          <ExternalUri
-            title={'AI Hub Samples'}
-            to={ExternalLinks.AI_HUB}
-            collapsed={collapsed}
-            icon={className => (
-              <img
-                src='https://www.gstatic.com/aihub/aihub_favicon.png'
-                className={classes(className, css.iconImage)}
-                alt='AI Hub'
-              />
-            )}
-          />
+          {/*<hr className={classes(css.separator, collapsed && css.collapsedSeparator)} />*/}
+          {/*<ExternalUri*/}
+            {/*title={'Documentation'}*/}
+            {/*to={ExternalLinks.DOCUMENTATION}*/}
+            {/*collapsed={collapsed}*/}
+            {/*icon={className => <DescriptionIcon className={className} />}*/}
+          {/*/>*/}
+          {/*<ExternalUri*/}
+            {/*title={'Github Repo'}*/}
+            {/*to={ExternalLinks.GITHUB}*/}
+            {/*collapsed={collapsed}*/}
+            {/*icon={className => (*/}
+              {/*<img src={GitHubIcon} className={classes(className, css.iconImage)} alt='Github' />*/}
+            {/*)}*/}
+          {/*/>*/}
+          {/*<ExternalUri*/}
+            {/*title={'AI Hub Samples'}*/}
+            {/*to={ExternalLinks.AI_HUB}*/}
+            {/*collapsed={collapsed}*/}
+            {/*icon={className => (*/}
+              {/*<img*/}
+                {/*src='https://www.gstatic.com/aihub/aihub_favicon.png'*/}
+                {/*className={classes(className, css.iconImage)}*/}
+                {/*alt='AI Hub'*/}
+              {/*/>*/}
+            {/*)}*/}
+          {/*/>*/}
           <hr className={classes(css.separator, collapsed && css.collapsedSeparator)} />
           <IconButton
             className={classes(css.chevron, collapsed && css.collapsedChevron)}
@@ -554,18 +554,18 @@ export class SideNav extends React.Component<SideNavInternalProps, SideNavState>
               </div>
             </Tooltip>
           )}
-          <Tooltip title='Report an Issue' enterDelay={300} placement={'top-start'}>
-            <div className={css.envMetadata}>
-              <a
-                href='https://github.com/kubeflow/pipelines/issues/new?template=BUG_REPORT.md'
-                className={classes(css.link, commonCss.unstyled)}
-                rel='noopener'
-                target='_blank'
-              >
-                Report an Issue
-              </a>
-            </div>
-          </Tooltip>
+          {/*<Tooltip title='Report an Issue' enterDelay={300} placement={'top-start'}>*/}
+            {/*<div className={css.envMetadata}>*/}
+              {/*<a*/}
+                {/*href='https://github.com/kubeflow/pipelines/issues/new?template=BUG_REPORT.md'*/}
+                {/*className={classes(css.link, commonCss.unstyled)}*/}
+                {/*rel='noopener'*/}
+                {/*target='_blank'*/}
+              {/*>*/}
+                {/*Report an Issue*/}
+              {/*</a>*/}
+            {/*</div>*/}
+          {/*</Tooltip>*/}
         </div>
       </div>
     );

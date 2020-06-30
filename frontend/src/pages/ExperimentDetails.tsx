@@ -146,7 +146,7 @@ export class ExperimentDetails extends Page<{}, ExperimentDetailsState> {
     const buttons = new Buttons(this.props, this.refresh.bind(this));
     return {
       actions: buttons.refresh(this.refresh.bind(this)).getToolbarActionMap(),
-      breadcrumbs: [{ displayName: 'Experiments', href: RoutePage.EXPERIMENTS }],
+      breadcrumbs: [{ displayName: '实验', href: RoutePage.EXPERIMENTS }],
       // TODO: determine what to show if no props.
       pageTitle: this.props ? this.props.match.params[RouteParams.experimentId] : '',
     };
@@ -299,7 +299,7 @@ export class ExperimentDetails extends Page<{}, ExperimentDetailsState> {
       const actions = buttons.getToolbarActionMap();
       this.props.updateToolbar({
         actions,
-        breadcrumbs: [{ displayName: 'Experiments', href: RoutePage.EXPERIMENTS }],
+        breadcrumbs: [{ displayName: '实验', href: RoutePage.EXPERIMENTS }],
         pageTitle,
         pageTitleTooltip: pageTitle,
       });

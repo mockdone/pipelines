@@ -86,7 +86,7 @@ export class ExperimentList extends Page<{ namespace?: string }, ExperimentListS
         .refresh(this.refresh.bind(this))
         .getToolbarActionMap(),
       breadcrumbs: [],
-      pageTitle: 'Experiments',
+      pageTitle: '实验',
     };
   }
 
@@ -95,17 +95,17 @@ export class ExperimentList extends Page<{ namespace?: string }, ExperimentListS
       {
         customRenderer: this._nameCustomRenderer,
         flex: 1,
-        label: 'Experiment name',
+        label: '实验名称',
         sortKey: ExperimentSortKeys.NAME,
       },
       {
         flex: 2,
-        label: 'Description',
+        label: '描述',
       },
       {
         customRenderer: this._last5RunsCustomRenderer,
         flex: 1,
-        label: 'Last 5 runs',
+        label: '最近5次运行信息',
       },
     ];
 
@@ -133,8 +133,8 @@ export class ExperimentList extends Page<{ namespace?: string }, ExperimentListS
           reload={this._reload.bind(this)}
           toggleExpansion={this._toggleRowExpand.bind(this)}
           getExpandComponent={this._getExpandedExperimentComponent.bind(this)}
-          filterLabel='Filter experiments'
-          emptyMessage='No experiments found. Click "Create experiment" to start.'
+          filterLabel='过滤实验'
+          emptyMessage='无数据'
         />
       </div>
     );
@@ -207,7 +207,7 @@ export class ExperimentList extends Page<{ namespace?: string }, ExperimentListS
       displayExperiments = response.experiments || [];
       displayExperiments.forEach(exp => (exp.expandState = ExpandState.COLLAPSED));
     } catch (err) {
-      await this.showPageError('Error: failed to retrieve list of experiments.', err);
+      await this.showPageError('提示: 获取实验信息失败', err);
       // No point in continuing if we couldn't retrieve any experiments.
       return '';
     }
@@ -237,9 +237,9 @@ export class ExperimentList extends Page<{ namespace?: string }, ExperimentListS
           );
           experiment.last5Runs = listRunsResponse.runs || [];
         } catch (err) {
-          experiment.error = 'Failed to load the last 5 runs of this experiment';
+          experiment.error = '获取实验运行数据失败';
           logger.error(
-            `Error: failed to retrieve run statuses for experiment: ${experiment.name}.`,
+            `Error: 获取实验${experiment.name} 运行状态失败.`,
             err,
           );
         }

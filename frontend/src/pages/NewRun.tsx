@@ -140,42 +140,42 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
     {
       customRenderer: NameWithTooltip,
       flex: 1,
-      label: 'Pipeline name',
+      label: 'Pipeline 名称',
       sortKey: PipelineSortKeys.NAME,
     },
-    { label: 'Description', flex: 2, customRenderer: descriptionCustomRenderer },
-    { label: 'Uploaded on', flex: 1, sortKey: PipelineSortKeys.CREATED_AT },
+    { label: '描述', flex: 2, customRenderer: descriptionCustomRenderer },
+    { label: '上传时间', flex: 1, sortKey: PipelineSortKeys.CREATED_AT },
   ];
 
   private pipelineVersionSelectorColumns = [
     {
       customRenderer: NameWithTooltip,
       flex: 2,
-      label: 'Version name',
+      label: '版本名称',
       sortKey: PipelineVersionSortKeys.NAME,
     },
     // TODO(jingzhang36): version doesn't have description field; remove it and
     // fix the rendering.
-    { label: 'Description', flex: 1, customRenderer: descriptionCustomRenderer },
-    { label: 'Uploaded on', flex: 1, sortKey: PipelineVersionSortKeys.CREATED_AT },
+    { label: '描述', flex: 1, customRenderer: descriptionCustomRenderer },
+    { label: '上传时间', flex: 1, sortKey: PipelineVersionSortKeys.CREATED_AT },
   ];
 
   private experimentSelectorColumns = [
     {
       customRenderer: NameWithTooltip,
       flex: 1,
-      label: 'Experiment name',
+      label: '实验名称',
       sortKey: ExperimentSortKeys.NAME,
     },
-    { label: 'Description', flex: 2 },
-    { label: 'Created at', flex: 1, sortKey: ExperimentSortKeys.CREATED_AT },
+    { label: '描述', flex: 2 },
+    { label: '创建时间', flex: 1, sortKey: ExperimentSortKeys.CREATED_AT },
   ];
 
   public getInitialToolbarState(): ToolbarProps {
     return {
       actions: {},
-      breadcrumbs: [{ displayName: 'Experiments', href: RoutePage.EXPERIMENTS }],
-      pageTitle: 'Start a new run',
+      breadcrumbs: [{ displayName: '实验', href: RoutePage.EXPERIMENTS }],
+      pageTitle: '新建 RUN',
     };
   }
 
@@ -218,7 +218,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
     return (
       <div className={classes(commonCss.page, padding(20, 'lr'))}>
         <div className={commonCss.scrollContainer}>
-          <div className={commonCss.header}>Run details</div>
+          <div className={commonCss.header}>Run 详情</div>
 
           {/* Pipeline selection */}
           {!!workflowFromRun && (
@@ -244,7 +244,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
                       onClick={() => this.setStateSafe({ pipelineSelectorOpen: true })}
                       style={{ padding: '3px 5px', margin: 0 }}
                     >
-                      Choose
+                      选择
                     </Button>
                   </InputAdornment>
                 ),
@@ -256,7 +256,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
             <Input
               value={pipelineVersionName}
               required={true}
-              label='Pipeline Version'
+              label='Pipeline 版本'
               disabled={true}
               variant='outlined'
               InputProps={{
@@ -269,7 +269,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
                       onClick={() => this.setStateSafe({ pipelineVersionSelectorOpen: true })}
                       style={{ padding: '3px 5px', margin: 0 }}
                     >
-                      Choose
+                      选择
                     </Button>
                   </InputAdornment>
                 ),
@@ -288,8 +288,8 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
             <DialogContent>
               <ResourceSelector
                 {...this.props}
-                title='Choose a pipeline'
-                filterLabel='Filter pipelines'
+                title='选择pipeline'
+                filterLabel='过滤 pipelines'
                 listApi={async (...args) => {
                   const response = await Apis.pipelineServiceApi.listPipelines(...args);
                   return {
@@ -298,7 +298,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
                   };
                 }}
                 columns={this.pipelineSelectorColumns}
-                emptyMessage='No pipelines found. Upload a pipeline and then try again.'
+                emptyMessage='无数据.'
                 initialSortColumn={PipelineSortKeys.CREATED_AT}
                 selectionChanged={(selectedPipeline: ApiPipeline) =>
                   this.setStateSafe({ unconfirmedSelectedPipeline: selectedPipeline })
@@ -316,7 +316,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
                 onClick={() => this._pipelineSelectorClosed(false)}
                 color='secondary'
               >
-                Cancel
+                取消
               </Button>
               <Button
                 id='usePipelineBtn'
@@ -324,7 +324,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
                 color='secondary'
                 disabled={!unconfirmedSelectedPipeline}
               >
-                Use this pipeline
+                使用该pipeline
               </Button>
             </DialogActions>
           </Dialog>
@@ -339,8 +339,8 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
             <DialogContent>
               <ResourceSelector
                 {...this.props}
-                title='Choose a pipeline version'
-                filterLabel='Filter pipeline versions'
+                title='选择pipeline version'
+                filterLabel='过滤 pipeline versions'
                 listApi={async (...args) => {
                   const response = await Apis.pipelineServiceApi.listPipelineVersions(
                     'PIPELINE',
@@ -356,7 +356,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
                   };
                 }}
                 columns={this.pipelineVersionSelectorColumns}
-                emptyMessage='No pipeline versions found. Select or upload a pipeline then try again.'
+                emptyMessage='无数据.'
                 initialSortColumn={PipelineVersionSortKeys.CREATED_AT}
                 selectionChanged={(selectedPipelineVersion: ApiPipelineVersion) =>
                   this.setStateSafe({ unconfirmedSelectedPipelineVersion: selectedPipelineVersion })
@@ -377,7 +377,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
                 onClick={() => this._pipelineVersionSelectorClosed(false)}
                 color='secondary'
               >
-                Cancel
+                取消
               </Button>
               <Button
                 id='usePipelineVersionBtn'
@@ -385,7 +385,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
                 color='secondary'
                 disabled={!unconfirmedSelectedPipelineVersion}
               >
-                Use this pipeline version
+               使用该pipeline version
               </Button>
             </DialogActions>
           </Dialog>
@@ -405,8 +405,8 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
             <DialogContent>
               <ResourceSelector
                 {...this.props}
-                title='Choose an experiment'
-                filterLabel='Filter experiments'
+                title='选择实验'
+                filterLabel='过滤 experiments'
                 listApi={async (
                   page_token?: string,
                   page_size?: number,
@@ -440,7 +440,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
                   };
                 }}
                 columns={this.experimentSelectorColumns}
-                emptyMessage='No experiments found. Create an experiment and then try again.'
+                emptyMessage='无数据.'
                 initialSortColumn={ExperimentSortKeys.CREATED_AT}
                 selectionChanged={(selectedExperiment: ApiExperiment) =>
                   this.setStateSafe({ unconfirmedSelectedExperiment: selectedExperiment })
@@ -453,7 +453,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
                 onClick={() => this._experimentSelectorClosed(false)}
                 color='secondary'
               >
-                Cancel
+                取消
               </Button>
               <Button
                 id='useExperimentBtn'
@@ -461,7 +461,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
                 color='secondary'
                 disabled={!unconfirmedSelectedExperiment}
               >
-                Use this experiment
+                使用该实验
               </Button>
             </DialogActions>
           </Dialog>
@@ -476,7 +476,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
             variant='outlined'
           />
           <Input
-            label='Description (optional)'
+            label='描述 (选填)'
             multiline={true}
             onChange={this.handleChange('description')}
             value={description}
@@ -484,11 +484,11 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
           />
 
           {/* Experiment selection */}
-          <div>This run will be associated with the following experiment</div>
+          <div>将该RUN关联到实验</div>
           <Input
             value={experimentName}
             required={true}
-            label='Experiment'
+            label='实验'
             disabled={true}
             variant='outlined'
             InputProps={{
@@ -501,7 +501,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
                     onClick={() => this.setStateSafe({ experimentSelectorOpen: true })}
                     style={{ padding: '3px 5px', margin: 0 }}
                   >
-                    Choose
+                    选择
                   </Button>
                 </InputAdornment>
               ),
@@ -510,7 +510,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
           />
 
           <div>
-            This run will use the following Kubernetes service account.{' '}
+            该RUN将会使用如下 Kubernetes service account.{' '}
             <HelpButton
               helpText={
                 <div>
@@ -526,25 +526,25 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
           <Input
             value={serviceAccount}
             onChange={this.handleChange('serviceAccount')}
-            label='Service Account (Optional)'
+            label='Service Account (可选)'
             variant='outlined'
           />
 
           {/* One-off/Recurring Run Type */}
-          <div className={commonCss.header}>Run Type</div>
-          {isClone && <span>{isRecurringRun ? 'Recurring' : 'One-off'}</span>}
+          <div className={commonCss.header}>Run 类型</div>
+          {isClone && <span>{isRecurringRun ? '循环' : '仅运行一次'}</span>}
           {!isClone && (
             <React.Fragment>
               <FormControlLabel
                 id='oneOffToggle'
-                label='One-off'
+                label='仅运行一次'
                 control={<Radio color='primary' />}
                 onChange={() => this._updateRecurringRunState(false)}
                 checked={!isRecurringRun}
               />
               <FormControlLabel
                 id='recurringToggle'
-                label='Recurring'
+                label='循环'
                 control={<Radio color='primary' />}
                 onChange={() => this._updateRecurringRunState(true)}
                 checked={isRecurringRun}
@@ -555,8 +555,8 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
           {/* Recurring run controls */}
           {isRecurringRun && (
             <React.Fragment>
-              <div className={commonCss.header}>Run trigger</div>
-              <div>Choose a method by which new runs will be triggered</div>
+              <div className={commonCss.header}>Run 触发器</div>
+              <div>选择触发新运行的方法</div>
 
               <Trigger
                 initialProps={{
@@ -592,7 +592,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
               disabled={!!errorMessage}
               busy={this.state.isBeingStarted}
               className={commonCss.buttonAction}
-              title='Start'
+              title='启动'
               onClick={this._start.bind(this)}
             />
             <Button
@@ -608,7 +608,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
                 );
               }}
             >
-              {isFirstRunInExperiment ? 'Skip this step' : 'Cancel'}
+              {isFirstRunInExperiment ? '跳过' : '取消'}
             </Button>
             <div className={classes(padding(20, 'r'))} style={{ color: 'red' }}>
               {errorMessage}
@@ -740,7 +740,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
 
     let experiment: ApiExperiment | undefined;
     let experimentName = '';
-    const breadcrumbs = [{ displayName: 'Experiments', href: RoutePage.EXPERIMENTS }];
+    const breadcrumbs = [{ displayName: '实验', href: RoutePage.EXPERIMENTS }];
     if (experimentId) {
       try {
         experiment = await Apis.experimentServiceApi.getExperiment(experimentId);
@@ -1035,17 +1035,17 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
   private _runParametersMessage(): string {
     if (this.state.pipeline || this.state.workflowFromRun) {
       if (this.state.parameters.length) {
-        return 'Specify parameters required by the pipeline';
+        return '该pipeline需要参数';
       } else {
-        return 'This pipeline has no parameters';
+        return '该pipeline 没有参数';
       }
     }
-    return 'Parameters will appear after you select a pipeline';
+    return '选择pipeline以查看参数';
   }
 
   private _start(): void {
     if (!this.state.pipelineVersion && !this.state.workflowFromRun) {
-      this.showErrorDialog('Run creation failed', 'Cannot start run without pipeline version');
+      this.showErrorDialog('Run 创建失败', '没有pipeline version，无法启动运行');
       logger.error('Cannot start run without pipeline version');
       return;
     }
@@ -1162,10 +1162,10 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
     const { pipelineVersion, workflowFromRun, maxConcurrentRuns, runName, trigger } = this.state;
     try {
       if (!pipelineVersion && !workflowFromRun) {
-        throw new Error('A pipeline version must be selected');
+        throw new Error(' pipeline version 必须选择');
       }
       if (!runName) {
-        throw new Error('Run name is required');
+        throw new Error('Run 名称不能为空');
       }
 
       const hasTrigger = trigger && (!!trigger.cron_schedule || !!trigger.periodic_schedule);
@@ -1177,13 +1177,13 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
           ? trigger!.cron_schedule!.end_time
           : trigger!.periodic_schedule!.end_time;
         if (startDate && endDate && startDate > endDate) {
-          throw new Error('End date/time cannot be earlier than start date/time');
+          throw new Error('截至时间不能早于开始时间');
         }
         const validMaxConcurrentRuns = (input: string) =>
           !isNaN(Number.parseInt(input, 10)) && +input > 0;
 
         if (maxConcurrentRuns !== undefined && !validMaxConcurrentRuns(maxConcurrentRuns)) {
-          throw new Error('For triggered runs, maximum concurrent runs must be a positive number');
+          throw new Error('最大并发RUN必须为正整数');
         }
       }
 

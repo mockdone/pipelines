@@ -47,7 +47,7 @@ export enum ArtifactDetailsTab {
 const LINEAGE_PATH = 'lineage';
 
 const TABS = {
-  [ArtifactDetailsTab.OVERVIEW]: { name: 'Overview' },
+  [ArtifactDetailsTab.OVERVIEW]: { name: '查看' },
   [ArtifactDetailsTab.LINEAGE_EXPLORER]: { name: 'Lineage Explorer' },
 };
 

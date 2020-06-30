@@ -70,12 +70,12 @@ class ExecutionList extends Page<{}, ExecutionListState> {
         {
           customRenderer: this.nameCustomRenderer,
           flex: 1,
-          label: 'Name',
+          label: '名称',
           sortKey: 'name',
         },
-        { label: 'State', flex: 1, sortKey: 'state' },
+        { label: '状态', flex: 1, sortKey: 'state' },
         { label: 'ID', flex: 1, sortKey: 'id' },
-        { label: 'Type', flex: 2, sortKey: 'type' },
+        { label: '类型', flex: 2, sortKey: 'type' },
       ],
       executions: [],
       expandedRows: new Map(),
@@ -90,7 +90,7 @@ class ExecutionList extends Page<{}, ExecutionListState> {
     return {
       actions: {},
       breadcrumbs: [],
-      pageTitle: 'Executions',
+      pageTitle: '执行记录',
     };
   }
 
@@ -109,7 +109,7 @@ class ExecutionList extends Page<{}, ExecutionListState> {
           initialSortOrder='asc'
           getExpandComponent={this.getExpandedExecutionsRow}
           toggleExpansion={this.toggleRowExpand}
-          emptyMessage='No executions found.'
+          emptyMessage='无数据.'
         />
       </div>
     );
