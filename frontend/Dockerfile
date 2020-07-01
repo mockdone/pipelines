@@ -13,6 +13,8 @@ COPY . .
 
 WORKDIR ./frontend
 
+COPY . .
+
 #RUN npm ci && npm run postinstall
 #RUN npm run build
 
