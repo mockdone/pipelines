@@ -22,7 +22,7 @@ RUN mkdir -p ./server/dist && \
     echo ${TAG_NAME} > ./server/dist/TAG_NAME
 RUN pwd
 RUN ls
-RUN find / build
+RUN find / -name build
 # Generate the dependency licenses files (one for the UI and one for the webserver),
 # concatenate them to one file under ./src/server
 RUN npm i -D license-checker
