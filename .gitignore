@@ -11,14 +11,14 @@ node_modules/
 bower_components/
 
 # Build output
-dist
+# dist
 
 # Web server
-frontend/server/dist
+# frontend/server/dist
 
 # Python built package
 *.egg-info
-dist
+# dist
 .tox
 
 # UI test outputs
