@@ -23,6 +23,8 @@ RUN mkdir -p ./server/dist && \
 RUN pwd
 RUN ls
 RUN find / -name build
+RUN cd /src/build
+RUN ls
 # Generate the dependency licenses files (one for the UI and one for the webserver),
 # concatenate them to one file under ./src/server
 RUN npm i -D license-checker
