@@ -11,8 +11,6 @@ WORKDIR ./src
 
 COPY . .
 
-RUN ls
-
 WORKDIR ./frontend
 
 RUN npm ci && npm run postinstall
@@ -37,7 +35,7 @@ RUN npm i -D license-checker
 
 FROM node:12.14.1-alpine
 
-COPY --from=build ./src/frontend/server /server
+COPY --from=build ./src/server /server
 COPY --from=build ./src/build /client
 
 WORKDIR /server
