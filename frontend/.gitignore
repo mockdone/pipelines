@@ -10,7 +10,7 @@ swagger-codegen-cli.jar
 /coverage
 
 # production
-/build
+# /build
 
 # misc
 .DS_Store

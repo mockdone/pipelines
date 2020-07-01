@@ -14,7 +14,7 @@ COPY . .
 WORKDIR ./frontend
 
 RUN npm ci && npm run postinstall
-RUN npm run build
+#RUN npm run build
 
 RUN mkdir -p ./server/dist && \
     echo ${COMMIT_HASH} > ./server/dist/COMMIT_HASH && \

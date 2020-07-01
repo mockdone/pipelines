@@ -39,7 +39,7 @@ frontend/test/ui/visual-regression/screenshots/screen
 
 *.pyc
 .DS_Store
-build
+# build
 
 .ipynb_checkpoints
 *.egg-info
