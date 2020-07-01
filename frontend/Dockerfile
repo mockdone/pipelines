@@ -40,6 +40,8 @@ COPY --from=build ./src/build /client
 
 WORKDIR /server
 
+RUN ls
+
 EXPOSE 3000
 RUN npm run build
 ENV API_SERVER_ADDRESS http://localhost:3001
