@@ -20,9 +20,9 @@ RUN mkdir -p ./server/dist && \
     echo ${COMMIT_HASH} > ./server/dist/COMMIT_HASH && \
     echo ${DATE} > ./server/dist/BUILD_DATE && \
     echo ${TAG_NAME} > ./server/dist/TAG_NAME
-RUN pwd
-RUN ls
-RUN find / -name 2.7198cd4b.chunk.js
+#RUN pwd
+#RUN ls
+#RUN find / -name 2.7198cd4b.chunk.js
 #WORKDIR ./src/build
 #RUN ls
 #
@@ -36,7 +36,7 @@ RUN npm i -D license-checker
 FROM node:12.14.1-alpine
 
 COPY --from=build ./src/frontend/server /server
-COPY --from=build ./src/frontend/build /client
+COPY --from=build ./src/build /client
 
 WORKDIR /server
 
