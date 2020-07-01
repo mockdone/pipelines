@@ -11,6 +11,8 @@ WORKDIR ./src
 
 COPY . .
 
+RUN ls
+
 WORKDIR ./frontend
 
 RUN npm ci && npm run postinstall
