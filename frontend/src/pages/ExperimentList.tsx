@@ -227,11 +227,11 @@ export class ExperimentList extends Page<{ namespace?: string }, ExperimentListS
             encodeURIComponent(
               JSON.stringify({
                 predicates: [
-                  {
-                    key: 'storage_state',
-                    op: PredicateOp.NOTEQUALS,
-                    string_value: RunStorageState.ARCHIVED.toString(),
-                  },
+                  // {
+                  //   key: 'storage_state',
+                  //   op: PredicateOp.NOTEQUALS,
+                  //   string_value: RunStorageState.ARCHIVED.toString(),
+                  // },
                 ],
               } as ApiFilter),
             ),

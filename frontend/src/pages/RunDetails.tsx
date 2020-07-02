@@ -841,15 +841,15 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
     return !workflow.status
       ? []
       : [
-          ['Status', workflow.status.phase],
-          ['Description', runMetadata ? runMetadata!.description! : ''],
+          ['状态', workflow.status.phase],
+          ['描述', runMetadata ? runMetadata!.description! : ''],
           [
-            'Created at',
+            '创建时间',
             workflow.metadata ? formatDateString(workflow.metadata.creationTimestamp) : '-',
           ],
-          ['Started at', formatDateString(workflow.status.startedAt)],
-          ['Finished at', formatDateString(workflow.status.finishedAt)],
-          ['Duration', getRunDurationFromWorkflow(workflow)],
+          ['开始时间', formatDateString(workflow.status.startedAt)],
+          ['结束时间', formatDateString(workflow.status.finishedAt)],
+          ['持续时间', getRunDurationFromWorkflow(workflow)],
         ];
   }
 

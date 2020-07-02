@@ -419,13 +419,14 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
                   const new_filter = JSON.parse(
                     decodeURIComponent(filter || '{"predicates": []}'),
                   ) as ApiFilter;
-                  new_filter.predicates = (new_filter.predicates || []).concat([
-                    {
-                      key: 'storage_state',
-                      op: PredicateOp.NOTEQUALS,
-                      string_value: ExperimentStorageState.ARCHIVED.toString(),
-                    },
-                  ]);
+                  new_filter.predicates = (new_filter.predicates || []);
+                  // .concat([
+                  //   {
+                  //     key: 'storage_state',
+                  //     op: PredicateOp.NOTEQUALS,
+                  //     string_value: ExperimentStorageState.ARCHIVED.toString(),
+                  //   },
+                  // ]);
                   const response = await Apis.experimentServiceApi.listExperiment(
                     page_token,
                     page_size,

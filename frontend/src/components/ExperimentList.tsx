@@ -115,18 +115,19 @@ export class ExperimentList extends React.PureComponent<ExperimentListProps, Exp
         const filter = JSON.parse(
           decodeURIComponent(request.filter || '{"predicates": []}'),
         ) as ApiFilter;
-        filter.predicates = (filter.predicates || []).concat([
-          {
-            key: 'storage_state',
-            // Use EQUALS ARCHIVED or NOT EQUALS ARCHIVED to account for cases where the field
-            // is missing, in which case it should be counted as available.
-            op:
-              this.props.storageState === ExperimentStorageState.ARCHIVED
-                ? PredicateOp.EQUALS
-                : PredicateOp.NOTEQUALS,
-            string_value: ExperimentStorageState.ARCHIVED.toString(),
-          },
-        ]);
+        filter.predicates = (filter.predicates || [])；
+        //     .concat([
+        //   {
+        //     key: 'storage_state',
+        //     // Use EQUALS ARCHIVED or NOT EQUALS ARCHIVED to account for cases where the field
+        //     // is missing, in which case it should be counted as available.
+        //     op:
+        //       this.props.storageState === ExperimentStorageState.ARCHIVED
+        //         ? PredicateOp.EQUALS
+        //         : PredicateOp.NOTEQUALS,
+        //     string_value: ExperimentStorageState.ARCHIVED.toString(),
+        //   },
+        // ]);
         request.filter = encodeURIComponent(JSON.stringify(filter));
       } catch (err) {
         const error = new Error(await errorToMessage(err));

@@ -113,11 +113,11 @@ describe('ExperimentList', () => {
       encodeURIComponent(
         JSON.stringify({
           predicates: [
-            {
-              key: 'storage_state',
-              op: PredicateOp.NOTEQUALS,
-              string_value: ExperimentStorageState.ARCHIVED.toString(),
-            },
+            // {
+            //   key: 'storage_state',
+            //   op: PredicateOp.NOTEQUALS,
+            //   string_value: ExperimentStorageState.ARCHIVED.toString(),
+            // },
           ],
         } as ApiFilter),
       ),
