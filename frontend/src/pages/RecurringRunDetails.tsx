@@ -112,14 +112,14 @@ class RecurringRunDetails extends Page<{}, RecurringRunConfigState> {
       <div className={classes(commonCss.page, padding(20, 'lr'))}>
         {run && (
           <div className={commonCss.page}>
-            <DetailsTable title='Recurring run details' fields={runDetails} />
+            <DetailsTable title='RUN 详情' fields={runDetails} />
 
             {!!triggerDetails.length && (
-              <DetailsTable title='Run trigger' fields={triggerDetails} />
+              <DetailsTable title='Run 触发器' fields={triggerDetails} />
             )}
 
             {!!inputParameters.length && (
-              <DetailsTable title='Run parameters' fields={inputParameters} />
+              <DetailsTable title='Run 参数' fields={inputParameters} />
             )}
           </div>
         )}
@@ -145,7 +145,7 @@ class RecurringRunDetails extends Page<{}, RecurringRunConfigState> {
     } catch (err) {
       const errorMessage = await errorToMessage(err);
       await this.showPageError(
-        `Error: failed to retrieve recurring run: ${runId}.`,
+        `错误: 查询RUN失败: ${runId}.`,
         new Error(errorMessage),
       );
       return;
@@ -159,7 +159,7 @@ class RecurringRunDetails extends Page<{}, RecurringRunConfigState> {
       } catch (err) {
         const errorMessage = await errorToMessage(err);
         await this.showPageError(
-          `Error: failed to retrieve this recurring run's experiment.`,
+          `错误: 查询实验失败.`,
           new Error(errorMessage),
           'warning',
         );
@@ -168,7 +168,7 @@ class RecurringRunDetails extends Page<{}, RecurringRunConfigState> {
     const breadcrumbs: Breadcrumb[] = [];
     if (experiment) {
       breadcrumbs.push(
-        { displayName: 'Experiments', href: RoutePage.EXPERIMENTS },
+        { displayName: '实验', href: RoutePage.EXPERIMENTS },
         {
           displayName: experiment.name!,
           href: RoutePage.EXPERIMENT_DETAILS.replace(
@@ -178,7 +178,7 @@ class RecurringRunDetails extends Page<{}, RecurringRunConfigState> {
         },
       );
     } else {
-      breadcrumbs.push({ displayName: 'All runs', href: RoutePage.RUNS });
+      breadcrumbs.push({ displayName: '所有 Runs', href: RoutePage.RUNS });
     }
     const pageTitle = run ? run.name! : runId;
 

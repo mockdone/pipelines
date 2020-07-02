@@ -224,7 +224,7 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
           () => this.refresh(),
         )
         .getToolbarActionMap(),
-      breadcrumbs: [{ displayName: 'Experiments', href: RoutePage.EXPERIMENTS }],
+      breadcrumbs: [{ displayName: '实验', href: RoutePage.EXPERIMENTS }],
       pageTitle: this.props.runId!,
     };
   }
@@ -282,7 +282,7 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
           <div className={commonCss.page}>
             <MD2Tabs
               selectedTab={selectedTab}
-              tabs={['Graph', 'Run output', 'Config']}
+              tabs={['图标', 'Run 输出', '配置']}
               onSwitch={(tab: number) => this.setStateSafe({ selectedTab: tab })}
             />
             <div className={commonCss.page}>
@@ -365,13 +365,13 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
                                   <div className={padding(20)}>
                                     <DetailsTable
                                       key={`input-parameters-${selectedNodeId}`}
-                                      title='Input parameters'
+                                      title='输入参数'
                                       fields={inputParams}
                                     />
 
                                     <DetailsTable
                                       key={`input-artifacts-${selectedNodeId}`}
-                                      title='Input artifacts'
+                                      title='输入产品'
                                       fields={inputArtifacts}
                                       valueComponent={MinioArtifactPreview}
                                       valueComponentProps={{
@@ -387,7 +387,7 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
 
                                     <DetailsTable
                                       key={`output-artifacts-${selectedNodeId}`}
-                                      title='Output artifacts'
+                                      title='输出产品'
                                       fields={outputArtifacts}
                                       valueComponent={MinioArtifactPreview}
                                       valueComponentProps={{
@@ -402,7 +402,7 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
                                     {selectedExecution && (
                                       <>
                                         <div>
-                                          This step corresponds to execution{' '}
+                                          此步骤对应于执行{' '}
                                           <Link
                                             className={commonCss.link}
                                             to={RoutePageFactory.executionDetails(
@@ -427,7 +427,7 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
                                       </>
                                     )}
                                     {!selectedExecution && (
-                                      <div>Corresponding ML Metadata not found.</div>
+                                      <div>找不到对应的ML元数据.</div>
                                     )}
                                   </div>
                                 )}
@@ -435,7 +435,7 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
                                 {sidepanelSelectedTab === SidePaneTab.VOLUMES && (
                                   <div className={padding(20)}>
                                     <DetailsTable
-                                      title='Volume Mounts'
+                                      title='挂在卷'
                                       fields={WorkflowParser.getNodeVolumeMounts(
                                         workflow,
                                         selectedNodeId,
@@ -447,7 +447,7 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
                                 {sidepanelSelectedTab === SidePaneTab.MANIFEST && (
                                   <div className={padding(20)}>
                                     <DetailsTable
-                                      title='Resource Manifest'
+                                      title='资源清单'
                                       fields={WorkflowParser.getNodeManifest(
                                         workflow,
                                         selectedNodeId,
@@ -490,14 +490,14 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
                                       )}
                                       {stackdriverK8sLogsUrl && (
                                         <div className={padding(12)}>
-                                          Logs can also be viewed in{' '}
+                                          查看日志{' '}
                                           <a
                                             href={stackdriverK8sLogsUrl}
                                             target='_blank'
                                             rel='noopener noreferrer'
                                             className={classes(css.link, commonCss.unstyled)}
                                           >
-                                            Stackdriver Kubernetes Monitoring
+                                            Stackdriver Kubernetes监控
                                           </a>
                                           .
                                         </div>
@@ -526,8 +526,7 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
                         <div className={commonCss.flex}>
                           <InfoIcon className={commonCss.infoIcon} />
                           <span className={css.infoSpan}>
-                            Runtime execution graph. Only steps that are currently running or have
-                            already completed are shown.
+                           运行时执行图，只显示当前已完成或者正在进行中的步骤
                           </span>
                         </div>
                       </div>
@@ -535,7 +534,7 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
                   )}
                   {!graph && (
                     <div>
-                      {runFinished && <span style={{ margin: '40px auto' }}>No graph to show</span>}
+                      {runFinished && <span style={{ margin: '40px auto' }}>无图表</span>}
                       {!runFinished && (
                         <CircularProgress size={30} className={commonCss.absoluteCenter} />
                       )}
@@ -557,7 +556,7 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
                       </div>
                     </div>
                   )}
-                  {!hasMetrics && <span>No metrics found for this run.</span>}
+                  {!hasMetrics && <span>找不到此运行的度量.</span>}
 
                   <Separator orientation='vertical' />
                   <Hr />
@@ -575,7 +574,7 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
                     </div>
                   ))}
                   {!allArtifactConfigs.length && (
-                    <span>No output artifacts found for this run.</span>
+                    <span>找不到此运行的输出项目.</span>
                   )}
                 </div>
               )}
@@ -584,14 +583,14 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
               {selectedTab === 2 && (
                 <div className={padding()}>
                   <DetailsTable
-                    title='Run details'
+                    title='Run 详情'
                     fields={this._getDetailsFields(workflow, runMetadata)}
                   />
 
                   {workflowParameters && !!workflowParameters.length && (
                     <div>
                       <DetailsTable
-                        title='Run parameters'
+                        title='Run 参数'
                         fields={workflowParameters.map(p => [p.name, p.value || ''])}
                       />
                     </div>
@@ -647,7 +646,7 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
       const allowCustomVisualizations = await Apis.areCustomVisualizationsAllowed();
       this.setState({ allowCustomVisualizations });
     } catch (err) {
-      this.showPageError('Error: Unable to enable custom visualizations.', err);
+      this.showPageError('错误: 无法启用自定义可视化.', err);
     }
 
     try {
@@ -678,14 +677,14 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
       if (workflowError) {
         if (workflowError === 'terminated') {
           this.props.updateBanner({
-            additionalInfo: `This run's workflow included the following message: ${workflowError}`,
-            message: 'This run was terminated',
+            additionalInfo: `此运行的工作流包含以下消息: ${workflowError}`,
+            message: 'run已终止',
             mode: 'warning',
             refresh: undefined,
           });
         } else {
           this.showPageError(
-            `Error: found errors when executing run: ${runId}.`,
+            `错误: 获取RUN执行信息失败: ${runId}.`,
             new Error(workflowError),
           );
         }
@@ -720,11 +719,11 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
       // If this is an archived run, only show Archive in breadcrumbs, otherwise show
       // the full path, including the experiment if any.
       if (runMetadata.storage_state === RunStorageState.ARCHIVED) {
-        breadcrumbs.push({ displayName: 'Archive', href: RoutePage.ARCHIVED_RUNS });
+        breadcrumbs.push({ displayName: '存档', href: RoutePage.ARCHIVED_RUNS });
       } else {
         if (experiment) {
           breadcrumbs.push(
-            { displayName: 'Experiments', href: RoutePage.EXPERIMENTS },
+            { displayName: '实验', href: RoutePage.EXPERIMENTS },
             {
               displayName: experiment.name!,
               href: RoutePage.EXPERIMENT_DETAILS.replace(
@@ -734,7 +733,7 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
             },
           );
         } else {
-          breadcrumbs.push({ displayName: 'All runs', href: RoutePage.RUNS });
+          breadcrumbs.push({ displayName: '所有 runs', href: RoutePage.RUNS });
         }
       }
       const pageTitle = (
@@ -918,20 +917,20 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
       selectedNodeDetails.logs = await Apis.getPodLogs(selectedNodeDetails.id, namespace);
     } catch (err) {
       let errMsg = await errorToMessage(err);
-      logsBannerMessage = 'Failed to retrieve pod logs.';
+      logsBannerMessage = '获取pod日志失败.';
 
       if (errMsg === 'pod not found') {
         logsBannerMessage += this.props.gkeMetadata.projectId
-          ? ' Use Stackdriver Kubernetes Monitoring to view them.'
+          ? ' 使用 Stackdriver Kubernetes 监控查看.'
           : '';
         logsBannerMode = 'info';
         logsBannerAdditionalInfo =
-          'Possible reasons include pod garbage collection, cluster autoscaling and pod preemption. ';
+          '可能的原因包括pod垃圾收集、集群自动缩放和pod抢占. ';
       } else {
         logsBannerMode = 'error';
       }
 
-      logsBannerAdditionalInfo += 'Error response: ' + errMsg;
+      logsBannerAdditionalInfo += '响应错误: ' + errMsg;
     }
 
     this.setStateSafe({
@@ -951,7 +950,7 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
   ): Promise<void> {
     const nodeId = this.state.selectedNodeDetails ? this.state.selectedNodeDetails.id : '';
     if (nodeId.length === 0) {
-      this.showPageError('Unable to generate visualization, no component selected.');
+      this.showPageError('无法生成可视化，未选择组件.');
       return;
     }
 
@@ -960,7 +959,7 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
         // Attempts to validate JSON, if attempt fails an error is displayed.
         JSON.parse(visualizationArguments);
       } catch (err) {
-        this.showPageError('Unable to generate visualization, invalid JSON provided.', err);
+        this.showPageError('无法生成可视化，提供的JSON无效.', err);
         return;
       }
     }
@@ -981,7 +980,7 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
       this.setState({ generatedVisualizations });
     } catch (err) {
       this.showPageError(
-        'Unable to generate visualization, an unexpected error was encountered.',
+        '无法生成可视化，遇到意外错误.',
         err,
       );
     } finally {
@@ -1149,7 +1148,7 @@ const VisualizationsTabContent: React.FC<{
       ) : (
         <>
           {viewerConfigs.length + generatedVisualizations.length === 0 && (
-            <Banner message='There are no visualizations in this step.' mode='info' />
+            <Banner message='此步骤中没有可视化效果.' mode='info' />
           )}
           {[
             ...viewerConfigs,
@@ -1173,9 +1172,9 @@ const VisualizationsTabContent: React.FC<{
           </div>
           <div className={padding(20)}>
             <p>
-              Add visualizations to your own components following instructions in{' '}
+              按照说明将可视化添加到您自己的组件中{' '}
               <ExternalLink href='https://www.kubeflow.org/docs/pipelines/sdk/output-viewer/'>
-                Visualize Results in the Pipelines UI
+                在Pipelines UI中的可视化结果
               </ExternalLink>
               .
             </p>

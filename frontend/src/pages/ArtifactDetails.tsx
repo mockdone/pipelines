@@ -155,8 +155,8 @@ class ArtifactDetails extends Page<{}, ArtifactDetailsState> {
   public getInitialToolbarState(): ToolbarProps {
     return {
       actions: {},
-      breadcrumbs: [{ displayName: 'Artifacts', href: RoutePage.ARTIFACTS }],
-      pageTitle: `Artifact #${this.id} details`,
+      breadcrumbs: [{ displayName: '产品', href: RoutePage.ARTIFACTS }],
+      pageTitle: `产品详情`,
     };
   }
 
@@ -171,11 +171,11 @@ class ArtifactDetails extends Page<{}, ArtifactDetailsState> {
     try {
       const response = await this.api.metadataStoreService.getArtifactsByID(request);
       if (response.getArtifactsList().length === 0) {
-        this.showPageError(`No artifact identified by id: ${this.id}`);
+        this.showPageError(`id为 ${this.id}的产品信息不存在`);
         return;
       }
       if (response.getArtifactsList().length > 1) {
-        this.showPageError(`Found multiple artifacts with ID: ${this.id}`);
+        this.showPageError(`ID为 ${this.id}的产品信息重复`);
         return;
       }
       const artifact = response.getArtifactsList()[0];
@@ -190,7 +190,7 @@ class ArtifactDetails extends Page<{}, ArtifactDetailsState> {
       let title = artifactName ? artifactName.toString() : '';
       const version = getResourceProperty(artifact, ArtifactProperties.VERSION);
       if (version) {
-        title += ` (version: ${version})`;
+        title += ` (版本: ${version})`;
       }
       this.props.updateToolbar({
         pageTitle: title,

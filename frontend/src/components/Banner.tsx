@@ -93,7 +93,7 @@ class Banner extends React.Component<BannerProps, BannerState> {
       mode: { backgroundColor: color.errorBg, color: color.errorText },
     });
     let bannerIcon = <ErrorIcon className={css.icon} />;
-    let dialogTitle = 'An error occurred';
+    let dialogTitle = '操作失败';
     let showTroubleshootingGuideLink = false;
     let showRefreshButton = true;
 
@@ -103,7 +103,7 @@ class Banner extends React.Component<BannerProps, BannerState> {
           mode: { backgroundColor: color.errorBg, color: color.errorText },
         });
         bannerIcon = <ErrorIcon className={css.icon} />;
-        dialogTitle = 'An error occurred';
+        dialogTitle = '操作失败';
         showTroubleshootingGuideLink = this.props.showTroubleshootingGuideLink || false;
         break;
       case 'warning':
@@ -111,14 +111,14 @@ class Banner extends React.Component<BannerProps, BannerState> {
           mode: { backgroundColor: color.warningBg, color: color.warningText },
         });
         bannerIcon = <WarningIcon className={css.icon} />;
-        dialogTitle = 'Warning';
+        dialogTitle = '警告';
         break;
       case 'info':
         bannerModeCss = stylesheet({
           mode: { backgroundColor: color.infoBg, color: color.infoText },
         });
         bannerIcon = <InfoIcon className={css.icon} />;
-        dialogTitle = 'Info';
+        dialogTitle = '提示';
         showRefreshButton = false;
         break;
       default:

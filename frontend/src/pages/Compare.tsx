@@ -64,9 +64,9 @@ export interface CompareState {
   workflowObjects: Workflow[];
 }
 
-const overviewSectionName = 'Run overview';
-const paramsSectionName = 'Parameters';
-const metricsSectionName = 'Metrics';
+const overviewSectionName = 'Run 预览';
+const paramsSectionName = '参数';
+const metricsSectionName = '指标';
 
 class Compare extends Page<{}, CompareState> {
   constructor(props: any) {
@@ -92,8 +92,8 @@ class Compare extends Page<{}, CompareState> {
         .collapseSections(this._collapseAllSections.bind(this))
         .refresh(this.refresh.bind(this))
         .getToolbarActionMap(),
-      breadcrumbs: [{ displayName: 'Experiments', href: RoutePage.EXPERIMENTS }],
-      pageTitle: 'Compare runs',
+      breadcrumbs: [{ displayName: '实验', href: RoutePage.EXPERIMENTS }],
+      pageTitle: '对比RUN',
     };
   }
 
@@ -182,7 +182,7 @@ class Compare extends Page<{}, CompareState> {
                           <PlotCard
                             configs={runsPerViewerType(viewerType).map(t => t.config)}
                             maxDimension={400}
-                            title='Aggregated view'
+                            title='聚合视图'
                           />
                         )}
 

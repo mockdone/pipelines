@@ -56,7 +56,7 @@ export class AllRunsList extends Page<{ namespace?: string }, AllRunsListState> 
         .refresh(this.refresh.bind(this))
         .getToolbarActionMap(),
       breadcrumbs: [],
-      pageTitle: 'Experiments',
+      pageTitle: '实验',
     };
   }
 

@@ -511,17 +511,6 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
 
           <div>
             该RUN将会使用如下 Kubernetes service account.{' '}
-            <HelpButton
-              helpText={
-                <div>
-                  Note, the service account needs{' '}
-                  <ExternalLink href='https://github.com/argoproj/argo/blob/v2.3.0/docs/workflow-rbac.md'>
-                    minimum permissions required by argo workflows
-                  </ExternalLink>{' '}
-                  and extra permissions the specific task requires.
-                </div>
-              }
-            />
           </div>
           <Input
             value={serviceAccount}
@@ -657,8 +646,8 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
           experimentId = RunUtils.getFirstExperimentReferenceId(originalRun.run);
         }
       } catch (err) {
-        await this.showPageError(`Error: failed to retrieve original run: ${originalRunId}.`, err);
-        logger.error(`Failed to retrieve original run: ${originalRunId}`, err);
+        await this.showPageError(`错误: 获取RUN失败: ${originalRunId}.`, err);
+        logger.error(`获取RUN失败: ${originalRunId}`, err);
       }
     } else if (originalRecurringRunId) {
       // If we are cloning a recurring run, fetch the original
@@ -675,10 +664,10 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
         }
       } catch (err) {
         await this.showPageError(
-          `Error: failed to retrieve original recurring run: ${originalRunId}.`,
+          `错误: 获取循环RUN信息失败: ${originalRunId}.`,
           err,
         );
-        logger.error(`Failed to retrieve original recurring run: ${originalRunId}`, err);
+        logger.error(`获取循环RUN信息失败: ${originalRunId}`, err);
       }
     } else if (embeddedRunId) {
       // If we create run from a workflow manifest that is acquried from an existing run.
@@ -714,11 +703,11 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
             } catch (err) {
               urlParser.clear(QUERY_PARAMS.pipelineVersionId);
               await this.showPageError(
-                `Error: failed to retrieve pipeline version: ${possiblePipelineVersionId}.`,
+                `错误: 获取pipeline版本失败: ${possiblePipelineVersionId}.`,
                 err,
               );
               logger.error(
-                `Failed to retrieve pipeline version: ${possiblePipelineVersionId}`,
+                `获取pipeline版本失败: ${possiblePipelineVersionId}`,
                 err,
               );
             }
@@ -730,10 +719,10 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
         } catch (err) {
           urlParser.clear(QUERY_PARAMS.pipelineId);
           await this.showPageError(
-            `Error: failed to retrieve pipeline: ${possiblePipelineId}.`,
+            `错误: 获取pipeline信息失败: ${possiblePipelineId}.`,
             err,
           );
-          logger.error(`Failed to retrieve pipeline: ${possiblePipelineId}`, err);
+          logger.error(`获取pipeline信息失败: ${possiblePipelineId}`, err);
         }
       }
     }
@@ -751,10 +740,10 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
         });
       } catch (err) {
         await this.showPageError(
-          `Error: failed to retrieve associated experiment: ${experimentId}.`,
+          `错误: 获取关联实验失败: ${experimentId}.`,
           err,
         );
-        logger.error(`Failed to retrieve associated experiment: ${experimentId}`, err);
+        logger.error(`获取关联实验失败: ${experimentId}`, err);
       }
     }
 
@@ -900,16 +889,16 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
       embeddedPipelineSpec = RunUtils.getWorkflowManifest(runWithEmbeddedPipeline.run);
     } catch (err) {
       await this.showPageError(
-        `Error: failed to retrieve the specified run: ${embeddedRunId}.`,
+        `错误: 获取RUN: ${embeddedRunId}信息失败.`,
         err,
       );
-      logger.error(`Failed to retrieve the specified run: ${embeddedRunId}`, err);
+      logger.error(`获取RUN: ${embeddedRunId} 信息失败`, err);
       return;
     }
 
     if (!embeddedPipelineSpec) {
       await this.showPageError(
-        `Error: somehow the run provided in the query params: ${embeddedRunId} had no embedded pipeline.`,
+        `错误:  ${embeddedRunId}的参数没有嵌入pipeline.`,
       );
       return;
     }
@@ -919,16 +908,16 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
       const parameters = RunUtils.getParametersFromRun(runWithEmbeddedPipeline);
       this.setStateSafe({
         parameters,
-        usePipelineFromRunLabel: 'Using pipeline from previous page',
+        usePipelineFromRunLabel: '使用上一页的管道',
         useWorkflowFromRun: true,
         workflowFromRun: workflow,
       });
     } catch (err) {
       await this.showPageError(
-        `Error: failed to parse the embedded pipeline's spec: ${embeddedPipelineSpec}.`,
+        `错误: 转换嵌入管道: ${embeddedPipelineSpec}规格失败.`,
         err,
       );
-      logger.error(`Failed to parse the embedded pipeline's spec from run: ${embeddedRunId}`, err);
+      logger.error(`转换嵌入管道: ${embeddedRunId}规格失败`, err);
       return;
     }
 
@@ -940,7 +929,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
     runtime?: ApiPipelineRuntime,
   ): Promise<void> {
     if (!originalRun) {
-      logger.error('Could not get cloned run details');
+      logger.error('获取RUN详情失败');
       return;
     }
 
@@ -973,7 +962,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
         name = pipeline.name || '';
       } catch (err) {
         await this.showPageError(
-          'Error: failed to find a pipeline version corresponding to that of the original run:' +
+          '错误: 找不到与原始运行对应的管道版本:' +
             ` ${originalRun.id}.`,
           err,
         );
@@ -985,7 +974,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
         name = pipeline.name || '';
       } catch (err) {
         await this.showPageError(
-          'Error: failed to find a pipeline corresponding to that of the original run:' +
+          '错误: 找不到与原始运行对应的管道版本:' +
             ` ${originalRun.id}.`,
           err,
         );
@@ -996,18 +985,18 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
         workflowFromRun = JSON.parse(embeddedPipelineSpec);
         name = workflowFromRun!.metadata.name || '';
       } catch (err) {
-        await this.showPageError("Error: failed to read the clone run's pipeline definition.", err);
+        await this.showPageError("错误: 无法读取克隆RUN的管道定义.", err);
         return;
       }
       useWorkflowFromRun = true;
-      usePipelineFromRunLabel = 'Using pipeline from cloned run';
+      usePipelineFromRunLabel = '使用可用run的pipeline';
     } else {
-      await this.showPageError("Could not find the cloned run's pipeline definition.");
+      await this.showPageError("找不到克隆RUN的pipeline定义.");
       return;
     }
 
     if (!originalRun.pipeline_spec || !originalRun.pipeline_spec.workflow_manifest) {
-      await this.showPageError(`Error: run ${originalRun.id} had no workflow manifest`);
+      await this.showPageError(`错误: run ${originalRun.id} 没有工作流清单`);
       return;
     }
 
@@ -1103,8 +1092,8 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
           : await Apis.runServiceApi.createRun(newRun);
       } catch (err) {
         const errorMessage = await errorToMessage(err);
-        this.showErrorDialog('Run creation failed', errorMessage);
-        logger.error('Error creating Run:', err);
+        this.showErrorDialog('Run 创建失败', errorMessage);
+        logger.error('RUN创建失败:', err);
         return;
       } finally {
         this.setStateSafe({ isBeingStarted: false });
@@ -1121,7 +1110,7 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
         this.props.history.push(RoutePage.RUNS);
       }
       this.props.updateSnackbar({
-        message: `Successfully started new Run: ${newRun.name}`,
+        message: `成功启动新 Run: ${newRun.name}`,
         open: true,
       });
     });
@@ -1132,10 +1121,10 @@ export class NewRun extends Page<{ namespace?: string }, NewRunState> {
     const match = oldName.match(numberRegex);
     if (!match) {
       // No match, add Clone prefix
-      return 'Clone of ' + oldName;
+      return '复制 ' + oldName;
     } else {
       const cloneNumber = match[1] ? +match[1] : 1;
-      return `Clone (${cloneNumber + 1}) of ${match[2]}`;
+      return `复制 (${cloneNumber + 1}) of ${match[2]}`;
     }
   }
 

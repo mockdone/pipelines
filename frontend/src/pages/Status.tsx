@@ -38,51 +38,51 @@ export function statusToIcon(
   // tslint:disable-next-line:variable-name
   let IconComponent: any = UnknownIcon;
   let iconColor = color.inactive;
-  let title = 'Unknown status';
+  let title = '未知状态';
   switch (status) {
     case NodePhase.ERROR:
       IconComponent = ErrorIcon;
       iconColor = color.errorText;
-      title = 'Error while running this resource';
+      title = '资源运行出错';
       break;
     case NodePhase.FAILED:
       IconComponent = ErrorIcon;
       iconColor = color.errorText;
-      title = 'Resource failed to execute';
+      title = '资源执行出错';
       break;
     case NodePhase.PENDING:
       IconComponent = PendingIcon;
       iconColor = color.weak;
-      title = 'Pending execution';
+      title = '执行阻塞';
       break;
     case NodePhase.RUNNING:
       IconComponent = RunningIcon;
       iconColor = color.blue;
-      title = 'Running';
+      title = '运行中';
       break;
     case NodePhase.TERMINATING:
       IconComponent = RunningIcon;
       iconColor = color.blue;
-      title = 'Run is terminating';
+      title = '运行正在终止';
       break;
     case NodePhase.SKIPPED:
       IconComponent = SkippedIcon;
-      title = 'Execution has been skipped for this resource';
+      title = '当前资源执行已被跳过';
       break;
     case NodePhase.SUCCEEDED:
       IconComponent = SuccessIcon;
       iconColor = color.success;
-      title = 'Executed successfully';
+      title = '执行成功';
       break;
     case NodePhase.CACHED: // This is not argo native, only applies to node.
       IconComponent = CachedIcon;
       iconColor = color.success;
-      title = 'Execution was skipped and outputs were taken from cache';
+      title = '执行被跳过，从缓存获取输出结果';
       break;
     case NodePhase.TERMINATED:
       IconComponent = TerminatedIcon;
       iconColor = color.terminated;
-      title = 'Run was manually terminated';
+      title = 'Run 被人为终止';
       break;
     case NodePhase.UNKNOWN:
       break;

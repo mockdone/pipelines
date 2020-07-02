@@ -188,13 +188,14 @@ export class ExperimentList extends Page<{ namespace?: string }, ExperimentListS
       const filter = JSON.parse(
         decodeURIComponent(request.filter || '{"predicates": []}'),
       ) as ApiFilter;
-      filter.predicates = (filter.predicates || []).concat([
-        {
-          key: 'storage_state',
-          op: PredicateOp.NOTEQUALS,
-          string_value: ExperimentStorageState.ARCHIVED.toString(),
-        },
-      ]);
+      filter.predicates = (filter.predicates || []);
+      //     .concat([
+      //   {
+      //     key: 'storage_state',
+      //     op: PredicateOp.NOTEQUALS,
+      //     string_value: ExperimentStorageState.ARCHIVED.toString(),
+      //   },
+      // ]);
       request.filter = encodeURIComponent(JSON.stringify(filter));
       response = await Apis.experimentServiceApi.listExperiment(
         request.pageToken,

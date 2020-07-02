@@ -133,7 +133,7 @@ export class ExperimentDetails extends Page<{}, ExperimentDetailsState> {
           )
           .getToolbarActionMap(),
         breadcrumbs: [],
-        pageTitle: 'Runs',
+        pageTitle: '运行',
         topLevelToolbar: false,
       },
       // TODO: remove
@@ -171,7 +171,7 @@ export class ExperimentDetails extends Page<{}, ExperimentDetailsState> {
                 elevation={0}
               >
                 <div>
-                  <div className={css.cardTitle}>Recurring run configs</div>
+                  <div className={css.cardTitle}>循环运行配置</div>
                   <div
                     className={classes(
                       css.cardContent,
@@ -186,7 +186,7 @@ export class ExperimentDetails extends Page<{}, ExperimentDetailsState> {
                     disableRipple={true}
                     onClick={() => this.setState({ recurringRunsManagerOpen: true })}
                   >
-                    Manage
+                    管理
                   </Button>
                 </div>
               </Paper>
@@ -196,18 +196,18 @@ export class ExperimentDetails extends Page<{}, ExperimentDetailsState> {
                 elevation={0}
               >
                 <div className={css.cardTitle}>
-                  <span>Experiment description</span>
+                  <span>实验描述</span>
                   <Button
                     id='expandExperimentDescriptionBtn'
                     onClick={() =>
                       this.props.updateDialog({
                         content: description,
-                        title: 'Experiment description',
+                        title: '实验描述',
                       })
                     }
                     className={classes(css.popOutIcon, 'popOutButton')}
                   >
-                    <Tooltip title='Read more'>
+                    <Tooltip title='查看更多'>
                       <PopOutIcon style={{ fontSize: 18 }} />
                     </Tooltip>
                   </Button>
@@ -255,7 +255,7 @@ export class ExperimentDetails extends Page<{}, ExperimentDetailsState> {
                   onClick={this._recurringRunsManagerClosed.bind(this)}
                   color='secondary'
                 >
-                  Close
+                  关闭
                 </Button>
               </DialogActions>
             </Dialog>
@@ -320,16 +320,16 @@ export class ExperimentDetails extends Page<{}, ExperimentDetailsState> {
           .length;
       } catch (err) {
         await this.showPageError(
-          `Error: failed to retrieve recurring runs for experiment: ${experimentId}.`,
+          `错误: 获取实验: ${experimentId}的运行信息失败.`,
           err,
         );
-        logger.error(`Error fetching recurring runs for experiment: ${experimentId}`, err);
+        logger.error(`获取实验: ${experimentId}的运行信息失败`, err);
       }
 
       this.setStateSafe({ activeRecurringRunsCount, experiment });
     } catch (err) {
-      await this.showPageError(`Error: failed to retrieve experiment: ${experimentId}.`, err);
-      logger.error(`Error loading experiment: ${experimentId}`, err);
+      await this.showPageError(`错误: ID: ${experimentId} 获取实验信息失败.`, err);
+      logger.error(`加载实验: ${experimentId}失败`, err);
     }
   }
 

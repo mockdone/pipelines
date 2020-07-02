@@ -153,7 +153,7 @@ class ExecutionList extends Page<{}, ExecutionListState> {
       // Code === 5 means no record found in backend. This is a temporary workaround.
       // TODO: remove err.code !== 5 check when backend is fixed.
       if (err.code !== 5) {
-        err.message = 'Failed getting executions: ' + err.message;
+        err.message = '获取执行信息失败: ' + err.message;
         throw err;
       }
     }

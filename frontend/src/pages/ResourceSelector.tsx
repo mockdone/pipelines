@@ -134,11 +134,11 @@ class ResourceSelector extends React.Component<ResourceSelectorProps, ResourceSe
     } catch (err) {
       const errorMessage = await errorToMessage(err);
       this.props.updateDialog({
-        buttons: [{ text: 'Dismiss' }],
-        content: 'List request failed with:\n' + errorMessage,
-        title: 'Error retrieving resources',
+        buttons: [{ text: '忽略' }],
+        content: '获取请求失败:\n' + errorMessage,
+        title: '错误',
       });
-      logger.error('Could not get requested list of resources', errorMessage);
+      logger.error('获取资源失败', errorMessage);
     }
     return nextPageToken;
   }

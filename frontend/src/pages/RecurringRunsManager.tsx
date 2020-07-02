@@ -121,7 +121,7 @@ class RecurringRunsManager extends React.Component<RecurringRunListProps, Recurr
     return (
       <BusyButton
         outlined={props.value}
-        title={props.value === true ? 'Enabled' : 'Disabled'}
+        title={props.value === true ? '启用' : '禁用'}
         busy={isBusy}
         onClick={() => {
           let busyIds = this.state.busyIds;
@@ -155,11 +155,11 @@ class RecurringRunsManager extends React.Component<RecurringRunListProps, Recurr
     } catch (err) {
       const errorMessage = await errorToMessage(err);
       this.props.updateDialog({
-        buttons: [{ text: 'Dismiss' }],
-        content: 'List recurring run configs request failed with:\n' + errorMessage,
-        title: 'Error retrieving recurring run configs',
+        buttons: [{ text: '忽略' }],
+        content: '获取RUN 配置失败:\n' + errorMessage,
+        title: '读取配置失败',
       });
-      logger.error('Could not get list of recurring runs', errorMessage);
+      logger.error('获取列表失败', errorMessage);
     }
 
     this.setState({ runs });
@@ -172,11 +172,11 @@ class RecurringRunsManager extends React.Component<RecurringRunListProps, Recurr
     } catch (err) {
       const errorMessage = await errorToMessage(err);
       this.props.updateDialog({
-        buttons: [{ text: 'Dismiss' }],
-        content: 'Error changing enabled state of recurring run:\n' + errorMessage,
-        title: 'Error',
+        buttons: [{ text: '忽略' }],
+        content: '启用/禁用失败:\n' + errorMessage,
+        title: '错误',
       });
-      logger.error('Error changing enabled state of recurring run', errorMessage);
+      logger.error('启用/禁用失败', errorMessage);
     }
   }
 }

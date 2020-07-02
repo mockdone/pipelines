@@ -74,7 +74,7 @@ export abstract class Page<P, S> extends React.Component<P & PageProps, S> {
     }
     this.props.updateBanner({
       additionalInfo: errorMessage ? errorMessage : undefined,
-      message: message + (errorMessage ? ' Click Details for more information.' : ''),
+      message: message + (errorMessage ? ' 点击【详情】查看更多信息.' : ''),
       mode: mode || 'error',
       refresh: refresh || this.refresh.bind(this),
     });
@@ -85,7 +85,7 @@ export abstract class Page<P, S> extends React.Component<P & PageProps, S> {
       return;
     }
     this.props.updateDialog({
-      buttons: [{ text: 'Dismiss' }],
+      buttons: [{ text: '忽略' }],
       content,
       title,
     });

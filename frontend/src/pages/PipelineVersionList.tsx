@@ -134,7 +134,7 @@ class PipelineVersionList extends React.PureComponent<
         );
       } catch (err) {
         const error = new Error(await errorToMessage(err));
-        this.props.onError('Error: failed to fetch runs.', error);
+        this.props.onError('错误: 匹配RUN失败.', error);
         // No point in continuing if we couldn't retrieve any runs.
         return '';
       }

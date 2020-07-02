@@ -137,7 +137,7 @@ class PipelineDetails extends Page<{}, PipelineDetailsState> {
           return pipelineVersionIdFromParams ? pipelineVersionIdFromParams : '';
         },
       )
-      .newPipelineVersion('Upload version', () =>
+      .newPipelineVersion('上传版本', () =>
         pipelineIdFromParams ? pipelineIdFromParams : '',
       );
 
@@ -150,7 +150,7 @@ class PipelineDetails extends Page<{}, PipelineDetailsState> {
             href: RoutePage.RUN_DETAILS.replace(':' + RouteParams.runId, fromRunId),
           },
         ],
-        pageTitle: 'Pipeline details',
+        pageTitle: 'Pipeline 详情',
       };
     } else {
       // Add buttons for creating experiment and deleting pipeline version
@@ -170,7 +170,7 @@ class PipelineDetails extends Page<{}, PipelineDetailsState> {
         );
       return {
         actions: buttons.getToolbarActionMap(),
-        breadcrumbs: [{ displayName: 'Pipelines', href: RoutePage.PIPELINES }],
+        breadcrumbs: [{ displayName: '工作流', href: RoutePage.PIPELINES }],
         pageTitle: this.props.match.params[RouteParams.pipelineId],
       };
     }
@@ -191,7 +191,7 @@ class PipelineDetails extends Page<{}, PipelineDetailsState> {
     if (this.state.graph && this.state.graph.node(selectedNodeId)) {
       selectedNodeInfo = this.state.graph.node(selectedNodeId).info;
       if (!!selectedNodeId && !selectedNodeInfo) {
-        logger.error(`Node with ID: ${selectedNodeId} was not found in the graph`);
+        logger.error(`节点 ID: ${selectedNodeId} 在图表中不存在`);
       }
     }
 
@@ -201,7 +201,7 @@ class PipelineDetails extends Page<{}, PipelineDetailsState> {
           <MD2Tabs
             selectedTab={selectedTab}
             onSwitch={(tab: number) => this.setStateSafe({ selectedTab: tab })}
-            tabs={['Graph', 'YAML']}
+            tabs={['图表', 'YAML']}
           />
           <div className={commonCss.page}>
             {selectedTab === 0 && (
@@ -220,12 +220,12 @@ class PipelineDetails extends Page<{}, PipelineDetailsState> {
                             justifyContent: 'space-between',
                           }}
                         >
-                          <div className={commonCss.header}>Summary</div>
+                          <div className={commonCss.header}>摘要</div>
                           <Button
                             onClick={() => this.setStateSafe({ summaryShown: false })}
                             color='secondary'
                           >
-                            Hide
+                            隐藏
                           </Button>
                         </div>
                         <div className={css.summaryKey}>ID</div>
@@ -234,7 +234,7 @@ class PipelineDetails extends Page<{}, PipelineDetailsState> {
                           <React.Fragment>
                             <form autoComplete='off'>
                               <FormControl>
-                                <InputLabel>Version</InputLabel>
+                                <InputLabel>版本</InputLabel>
                                 <Select
                                   value={
                                     selectedVersion
@@ -258,14 +258,14 @@ class PipelineDetails extends Page<{}, PipelineDetailsState> {
                                 target='_blank'
                                 rel='noopener noreferrer'
                               >
-                                Version source
+                                版本源
                               </a>
                             </div>
                           </React.Fragment>
                         )}
-                        <div className={css.summaryKey}>Uploaded on</div>
+                        <div className={css.summaryKey}>上传时间</div>
                         <div>{formatDateString(pipeline.created_at)}</div>
-                        <div className={css.summaryKey}>Description</div>
+                        <div className={css.summaryKey}>描述</div>
                         <Description description={pipeline.description || ''} />
                       </Paper>
                     )}
@@ -287,7 +287,7 @@ class PipelineDetails extends Page<{}, PipelineDetailsState> {
                       <div className={commonCss.page}>
                         {!selectedNodeInfo && (
                           <div className={commonCss.absoluteCenter}>
-                            Unable to retrieve node info
+                            获取节点信息失败
                           </div>
                         )}
                         {!!selectedNodeInfo && (
@@ -303,7 +303,7 @@ class PipelineDetails extends Page<{}, PipelineDetailsState> {
                           onClick={() => this.setStateSafe({ summaryShown: !summaryShown })}
                           color='secondary'
                         >
-                          Show summary
+                          显示摘要
                         </Button>
                       )}
                       <div
@@ -313,12 +313,12 @@ class PipelineDetails extends Page<{}, PipelineDetailsState> {
                         )}
                       >
                         <InfoIcon className={commonCss.infoIcon} />
-                        <span className={css.infoSpan}>Static pipeline graph</span>
+                        <span className={css.infoSpan}>静态管道图</span>
                       </div>
                     </div>
                   </div>
                 )}
-                {!this.state.graph && <span style={{ margin: '40px auto' }}>No graph to show</span>}
+                {!this.state.graph && <span style={{ margin: '40px auto' }}>无数据</span>}
               </div>
             )}
             {selectedTab === 1 && !!templateString && (
@@ -393,21 +393,21 @@ class PipelineDetails extends Page<{}, PipelineDetailsState> {
             templateString = JsYaml.safeDump(pipelineSpec);
           } catch (err) {
             await this.showPageError(
-              `Failed to parse pipeline spec from run with ID: ${runDetails.run!.id}.`,
+              `无法分析ID为 ${runDetails.run!.id}的运行的管道规范.`,
               err,
             );
             logger.error(
-              `Failed to convert pipeline spec YAML from run with ID: ${runDetails.run!.id}.`,
+              `无法从ID为${runDetails.run!.id}的运行转换管道规范YAML.`,
               err,
             );
           }
         } catch (err) {
           await this.showPageError(
-            `Failed to parse pipeline spec from run with ID: ${runDetails.run!.id}.`,
+            `无法分析ID为 ${runDetails.run!.id}的运行的管道规范.`,
             err,
           );
           logger.error(
-            `Failed to parse pipeline spec JSON from run with ID: ${runDetails.run!.id}.`,
+            `无法从ID为${runDetails.run!.id}的运行转换管道规范JSON.`,
             err,
           );
         }
@@ -431,16 +431,16 @@ class PipelineDetails extends Page<{}, PipelineDetailsState> {
             },
           );
         } else {
-          breadcrumbs.push({ displayName: 'All runs', href: RoutePage.RUNS });
+          breadcrumbs.push({ displayName: '所有运行', href: RoutePage.RUNS });
         }
         breadcrumbs.push({
           displayName: runDetails.run!.name!,
           href: RoutePage.RUN_DETAILS.replace(':' + RouteParams.runId, fromRunId),
         });
-        pageTitle = 'Pipeline details';
+        pageTitle = 'Pipeline 详情';
       } catch (err) {
-        await this.showPageError('Cannot retrieve run details.', err);
-        logger.error('Cannot retrieve run details.', err);
+        await this.showPageError('获取运行详情失败.', err);
+        logger.error('获取运行详情失败.', err);
       }
     } else {
       // if fromRunId is not specified, then we have a full pipeline
@@ -449,8 +449,8 @@ class PipelineDetails extends Page<{}, PipelineDetailsState> {
       try {
         pipeline = await Apis.pipelineServiceApi.getPipeline(pipelineId);
       } catch (err) {
-        await this.showPageError('Cannot retrieve pipeline details.', err);
-        logger.error('Cannot retrieve pipeline details.', err);
+        await this.showPageError('获取pipeline详情失败.', err);
+        logger.error('获取pipeline详情失败.', err);
         return;
       }
 
@@ -462,8 +462,8 @@ class PipelineDetails extends Page<{}, PipelineDetailsState> {
           version = await Apis.pipelineServiceApi.getPipelineVersion(versionId);
         }
       } catch (err) {
-        await this.showPageError('Cannot retrieve pipeline version.', err);
-        logger.error('Cannot retrieve pipeline version.', err);
+        await this.showPageError('获取pipeline版本失败.', err);
+        logger.error('获取pipeline版本失败.', err);
         return;
       }
 
@@ -492,8 +492,8 @@ class PipelineDetails extends Page<{}, PipelineDetailsState> {
               )
             ).versions || [];
         } catch (err) {
-          await this.showPageError('Cannot retrieve pipeline versions.', err);
-          logger.error('Cannot retrieve pipeline versions.', err);
+          await this.showPageError('获取pipeline版本失败.', err);
+          logger.error('获取pipeline版本失败.', err);
           return;
         }
         templateString = await this._getTemplateString(pipelineId, versionId);
@@ -523,8 +523,8 @@ class PipelineDetails extends Page<{}, PipelineDetailsState> {
       }
       return templateResponse.template || '';
     } catch (err) {
-      await this.showPageError('Cannot retrieve pipeline template.', err);
-      logger.error('Cannot retrieve pipeline details.', err);
+      await this.showPageError('获取pipeline模板失败.', err);
+      logger.error('获取pipeline模板失败.', err);
     }
     return '';
   }
@@ -535,7 +535,7 @@ class PipelineDetails extends Page<{}, PipelineDetailsState> {
         const template = JsYaml.safeLoad(templateString);
         return StaticGraphParser.createGraph(template!);
       } catch (err) {
-        await this.showPageError('Error: failed to generate Pipeline graph.', err);
+        await this.showPageError('错误: 生成pipeline图表失败.', err);
       }
     }
     return null;

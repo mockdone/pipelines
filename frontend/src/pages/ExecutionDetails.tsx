@@ -80,8 +80,8 @@ export default class ExecutionDetails extends Page<{}, ExecutionDetailsState> {
   public getInitialToolbarState(): ToolbarProps {
     return {
       actions: {},
-      breadcrumbs: [{ displayName: 'Executions', href: RoutePage.EXECUTIONS }],
-      pageTitle: `${this.id} details`,
+      breadcrumbs: [{ displayName: '执行', href: RoutePage.EXECUTIONS }],
+      pageTitle: `${this.id} 详情`,
     };
   }
 
@@ -124,22 +124,22 @@ export class ExecutionDetailsContent extends Component<
           />
         }
         <SectionIO
-          title={'Declared Inputs'}
+          title={'输入'}
           artifactIds={this.state.events[Event.Type.DECLARED_INPUT]}
           artifactTypeMap={this.state.artifactTypeMap}
         />
         <SectionIO
-          title={'Inputs'}
+          title={'输入'}
           artifactIds={this.state.events[Event.Type.INPUT]}
           artifactTypeMap={this.state.artifactTypeMap}
         />
         <SectionIO
-          title={'Declared Outputs'}
+          title={'输出'}
           artifactIds={this.state.events[Event.Type.DECLARED_OUTPUT]}
           artifactTypeMap={this.state.artifactTypeMap}
         />
         <SectionIO
-          title={'Outputs'}
+          title={'输出'}
           artifactIds={this.state.events[Event.Type.OUTPUT]}
           artifactTypeMap={this.state.artifactTypeMap}
         />
@@ -150,8 +150,8 @@ export class ExecutionDetailsContent extends Component<
   public getInitialToolbarState(): ToolbarProps {
     return {
       actions: {},
-      breadcrumbs: [{ displayName: 'Executions', href: RoutePage.EXECUTIONS }],
-      pageTitle: `Execution #${this.props.id} details`,
+      breadcrumbs: [{ displayName: '执行', href: RoutePage.EXECUTIONS }],
+      pageTitle: ` #${this.props.id} 执行详情`,
     };
   }
 
@@ -170,12 +170,12 @@ export class ExecutionDetailsContent extends Component<
         });
       })
       .catch(err => {
-        this.props.onError('Failed to fetch artifact types', err, 'warning', this.refresh);
+        this.props.onError('匹配产品类型失败', err, 'warning', this.refresh);
       });
 
     const numberId = this.props.id;
     if (isNaN(numberId) || numberId < 0) {
-      const error = new Error(`Invalid execution id: ${this.props.id}`);
+      const error = new Error(` id: ${this.props.id} 格式非法`);
       this.props.onError(error.message, error, 'error', this.refresh);
       return;
     }
@@ -193,7 +193,7 @@ export class ExecutionDetailsContent extends Component<
 
       if (!executionResponse.getExecutionsList().length) {
         this.props.onError(
-          `No execution identified by id: ${this.props.id}`,
+          ` id: ${this.props.id} 对应的执行不存在`,
           undefined,
           'error',
           this.refresh,
@@ -203,7 +203,7 @@ export class ExecutionDetailsContent extends Component<
 
       if (executionResponse.getExecutionsList().length > 1) {
         this.props.onError(
-          `Found multiple executions with ID: ${this.props.id}`,
+          `ID: ${this.props.id} 获取到多个执行`,
           undefined,
           'error',
           this.refresh,
@@ -224,7 +224,7 @@ export class ExecutionDetailsContent extends Component<
       let executionType: ExecutionType | undefined;
       if (!types || types.length === 0) {
         this.props.onError(
-          `Cannot find execution type with id: ${execution.getTypeId()}`,
+          ` id: ${execution.getTypeId()} 执行类型不存在`,
           undefined,
           'error',
           this.refresh,
@@ -232,7 +232,7 @@ export class ExecutionDetailsContent extends Component<
         return;
       } else if (types.length > 1) {
         this.props.onError(
-          `More than one execution type found with id: ${execution.getTypeId()}`,
+          ` id: ${execution.getTypeId()} 获取到多个执行类型`,
           undefined,
           'error',
           this.refresh,
@@ -351,9 +351,9 @@ class SectionIO extends Component<
         <table>
           <thead>
             <tr>
-              <th className={css.tableCell}>Artifact ID</th>
-              <th className={css.tableCell}>Name</th>
-              <th className={css.tableCell}>Type</th>
+              <th className={css.tableCell}>产品 ID</th>
+              <th className={css.tableCell}>名称</th>
+              <th className={css.tableCell}>类型</th>
               <th className={css.tableCell}>URI</th>
             </tr>
           </thead>

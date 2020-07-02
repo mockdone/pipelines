@@ -242,7 +242,7 @@ class ArtifactList extends Page<{}, ArtifactListState> {
       if (err.message) {
         this.showPageError(err.message, err);
       } else {
-        this.showPageError('Unknown error', err);
+        this.showPageError('未知错误', err);
       }
     }
     return;

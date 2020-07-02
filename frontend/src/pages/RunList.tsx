@@ -384,7 +384,7 @@ class RunList extends React.PureComponent<RunListProps, RunListState> {
         nextPageToken = response.next_page_token || '';
       } catch (err) {
         const error = new Error(await errorToMessage(err));
-        this.props.onError('Error: failed to fetch runs.', error);
+        this.props.onError('错误: 匹配 runs失败.', error);
         // No point in continuing if we couldn't retrieve any runs.
         return '';
       }
@@ -462,7 +462,7 @@ class RunList extends React.PureComponent<RunListProps, RunListState> {
         };
       } catch (err) {
         displayRun.error =
-          'Failed to get associated pipeline version: ' + (await errorToMessage(err));
+          '获取关联的pipeline 版本失败: ' + (await errorToMessage(err));
         return;
       }
     } else if (pipelineId) {
@@ -474,7 +474,7 @@ class RunList extends React.PureComponent<RunListProps, RunListState> {
           const pipeline = await Apis.pipelineServiceApi.getPipeline(pipelineId);
           pipelineName = pipeline.name || '';
         } catch (err) {
-          displayRun.error = 'Failed to get associated pipeline: ' + (await errorToMessage(err));
+          displayRun.error = '获取关联pipeline失败: ' + (await errorToMessage(err));
           return;
         }
       }
@@ -504,7 +504,7 @@ class RunList extends React.PureComponent<RunListProps, RunListState> {
           const experiment = await Apis.experimentServiceApi.getExperiment(experimentId);
           experimentName = experiment.name || '';
         } catch (err) {
-          displayRun.error = 'Failed to get associated experiment: ' + (await errorToMessage(err));
+          displayRun.error = '获取关联实验失败: ' + (await errorToMessage(err));
           return;
         }
       }

@@ -266,7 +266,7 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
                         onClick={() => this.setStateSafe({ pipelineSelectorOpen: true })}
                         style={{ padding: '3px 5px', margin: 0 }}
                       >
-                        Choose
+                        选择
                       </Button>
                     </InputAdornment>
                   ),
@@ -557,13 +557,13 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
         );
         this.props.updateSnackbar({
           autoHideDuration: 10000,
-          message: `Successfully created new pipeline version: ${response.name}`,
+          message: `成功创建 pipeline 版本: ${response.name}`,
           open: true,
         });
       } catch (err) {
         const errorMessage = await errorToMessage(err);
-        await this.showErrorDialog('Pipeline version creation failed', errorMessage);
-        logger.error('Error creating pipeline version:', err);
+        await this.showErrorDialog('创建pipeline版本失败', errorMessage);
+        logger.error('创建pipeline版本失败:', err);
         this.setState({ isbeingCreated: false });
       }
     });
@@ -590,7 +590,7 @@ class NewPipelineVersion extends Page<{}, NewPipelineVersionState> {
 
     if (this.state.importMethod === ImportMethod.LOCAL) {
       if (!this.state.file) {
-        throw new Error('File should be selected');
+        throw new Error('请选择文件');
       }
       return Apis.uploadPipelineVersion(
         this.state.pipelineVersionName,
@@ -668,7 +668,7 @@ const DocumentationCompilePipeline: React.FC = () => (
   <div className={padding(10, 'b')}>
     了解更多, 可点击查看{' '}
     <ExternalLink href='https://www.kubeflow.org/docs/pipelines/sdk/build-component/#compile-the-pipeline'>
-      Compile Pipeline Documentation
+      帮助文档
     </ExternalLink>
     .
   </div>
