@@ -115,7 +115,7 @@ export class ExperimentList extends React.PureComponent<ExperimentListProps, Exp
         const filter = JSON.parse(
           decodeURIComponent(request.filter || '{"predicates": []}'),
         ) as ApiFilter;
-        filter.predicates = (filter.predicates || [])；
+        filter.predicates = (filter.predicates || []);
         //     .concat([
         //   {
         //     key: 'storage_state',
