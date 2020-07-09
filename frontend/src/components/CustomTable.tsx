@@ -430,7 +430,7 @@ export default class CustomTable extends React.Component<CustomTableProps, Custo
         {/* Footer */}
         {!this.props.disablePaging && (
           <div className={css.footer}>
-            <span className={padding(10, 'r')}>Rows per page:</span>
+            <span className={padding(10, 'r')}>每页记录数:</span>
             <TextField
               select={true}
               variant='standard'

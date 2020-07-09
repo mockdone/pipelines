@@ -542,7 +542,15 @@ export class SideNav extends React.Component<SideNavInternalProps, SideNavState>
               placement={'top-start'}
             >
               <div className={css.envMetadata}>
-                <span>当前版本: V1.0.0 </span>
+                <span>Version: </span>
+                <a
+                  href={displayBuildInfo.commitUrl}
+                  className={classes(css.link, commonCss.unstyled)}
+                  rel='noopener'
+                  target='_blank'
+                >
+                  {displayBuildInfo.tagName}
+                </a>
               </div>
             </Tooltip>
           )}
