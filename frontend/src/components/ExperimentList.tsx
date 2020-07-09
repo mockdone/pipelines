@@ -131,7 +131,7 @@ export class ExperimentList extends React.PureComponent<ExperimentListProps, Exp
         request.filter = encodeURIComponent(JSON.stringify(filter));
       } catch (err) {
         const error = new Error(await errorToMessage(err));
-        this.props.onError('Error: failed to parse request filter: ', error);
+        this.props.onError('错误: 无法分析请求筛选器: ', error);
         return '';
       }
     }
@@ -152,7 +152,7 @@ export class ExperimentList extends React.PureComponent<ExperimentListProps, Exp
       this.setState({ displayExperiments });
     } catch (err) {
       const error = new Error(await errorToMessage(err));
-      this.props.onError('Error: failed to list experiments: ', error);
+      this.props.onError('错误: 未能列出实验: ', error);
       return '';
     }
 

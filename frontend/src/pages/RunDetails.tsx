@@ -282,7 +282,7 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
           <div className={commonCss.page}>
             <MD2Tabs
               selectedTab={selectedTab}
-              tabs={['图标', 'Run 输出', '配置']}
+              tabs={['图表', 'Run 输出', '配置']}
               onSwitch={(tab: number) => this.setStateSafe({ selectedTab: tab })}
             />
             <div className={commonCss.page}>
@@ -435,7 +435,7 @@ class RunDetails extends Page<RunDetailsInternalProps, RunDetailsState> {
                                 {sidepanelSelectedTab === SidePaneTab.VOLUMES && (
                                   <div className={padding(20)}>
                                     <DetailsTable
-                                      title='挂在卷'
+                                      title='挂载卷'
                                       fields={WorkflowParser.getNodeVolumeMounts(
                                         workflow,
                                         selectedNodeId,
